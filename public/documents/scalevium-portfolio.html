@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scalevium — Client Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0b0e14;
+      --muted: #4b5565;
+      --subtle: #64748b;
+      --line: rgba(11, 14, 20, 0.09);
+      --accent: #2563eb;
+      --accent-brand: #3e7bfa;
+      --accent-soft: #eef2ff;
+      --accent-tint: rgba(37, 99, 235, 0.08);
+      --paper: #f6f7f9;
+      --bg: #ffffff;
+      --gradient: linear-gradient(135deg, #1b3a6b 0%, #3e7bfa 100%);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background: #dce3ee;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    @page { size: A4; margin: 0; }
+
+    .sheet {
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto 12px;
+      background: var(--bg);
+      padding: 11mm 13mm 10mm;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .sheet { margin: 0; }
+      .no-print { display: none !important; }
+    }
+
+    .sheet::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .sheet > * { position: relative; z-index: 1; }
+
+    .cover::before { opacity: 0.2; }
+
+    .page-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 9px;
+      flex-shrink: 0;
+    }
+    .page-bar img { height: 16px; width: auto; }
+    .page-bar span {
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      font-weight: 600;
+    }
+
+    .eyebrow {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.06;
+    }
+    h2 {
+      font-size: 15px;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    h3 {
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .lead {
+      font-size: 10.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .body { font-size: 9.5px; line-height: 1.5; color: var(--muted); }
+
+    .grow { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+
+    /* Cover */
+    .cover {
+      padding: 14mm 15mm;
+      justify-content: space-between;
+    }
+    .cover-logo { height: 32px; width: auto; margin-bottom: 18mm; }
+    .cover h1 { font-size: 34px; max-width: 14ch; margin-bottom: 10px; }
+    .cover .tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .cover .support {
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 48ch;
+    }
+    .cover-accent {
+      position: absolute;
+      right: -40mm;
+      top: 28mm;
+      width: 95mm;
+      height: 95mm;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(62, 123, 250, 0.18), transparent 65%);
+      z-index: 0;
+    }
+    .cover-mark {
+      position: absolute;
+      right: 12mm;
+      bottom: 14mm;
+      width: 52mm;
+      opacity: 0.06;
+    }
+    .cover-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+      font-size: 9px;
+      color: var(--subtle);
+    }
+
+    /* Cards & grids */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .service-grid.two { grid-template-columns: repeat(2, 1fr); }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 9px;
+      background: var(--bg);
+    }
+    .card.soft { background: var(--paper); }
+    .card .icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 5px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .card p { font-size: 9px; line-height: 1.45; color: var(--muted); }
+
+    .intro-band {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+
+    ul.checks {
+      list-style: none;
+      display: grid;
+      gap: 4px;
+    }
+    ul.checks li {
+      font-size: 9.5px;
+      line-height: 1.45;
+      color: var(--muted);
+      padding-left: 12px;
+      position: relative;
+    }
+    ul.checks li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-brand);
+    }
+    ul.checks li strong { color: var(--ink); font-weight: 600; }
+
+    .mockup {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 8px 24px rgba(11, 14, 20, 0.06);
+    }
+    .mockup img { display: block; width: 100%; height: auto; }
+    .mockup figcaption {
+      padding: 6px 9px;
+      font-size: 8.5px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+    .mockup figcaption strong { color: var(--ink); display: block; font-size: 9px; margin-bottom: 2px; }
+
+    .project-hero { margin-bottom: 6px; }
+    .project-hero h1 { font-size: 22px; margin-bottom: 4px; }
+    .project-hero .oneliner { font-size: 10.5px; color: var(--muted); line-height: 1.5; max-width: 62ch; }
+
+    .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; }
+    .section-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 4px;
+    }
+
+    .badges { display: flex; flex-wrap: wrap; gap: 4px; }
+    .badges span {
+      font-size: 8px;
+      font-weight: 500;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      color: var(--subtle);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+    }
+    .feature-grid .card { padding: 7px 8px; }
+    .feature-grid h3 { font-size: 9.5px; }
+    .feature-grid p { font-size: 8.5px; line-height: 1.4; color: var(--muted); }
+
+    .impact {
+      border-left: 3px solid var(--accent-brand);
+      padding: 6px 10px;
+      background: var(--accent-tint);
+      border-radius: 0 8px 8px 0;
+    }
+    .impact p { font-size: 9.5px; color: var(--muted); line-height: 1.5; }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+      align-items: start;
+    }
+    .step {
+      text-align: center;
+      padding: 8px 4px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--paper);
+    }
+    .step .num {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .step strong { display: block; font-size: 8.5px; margin-bottom: 3px; }
+    .step span { font-size: 7.5px; line-height: 1.35; color: var(--muted); }
+
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+    }
+    .industry {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 6px;
+      text-align: center;
+      font-size: 8.5px;
+      font-weight: 600;
+      background: #fff;
+    }
+    .industry small {
+      display: block;
+      font-weight: 500;
+      font-size: 7px;
+      color: var(--subtle);
+      margin-top: 3px;
+      line-height: 1.3;
+    }
+
+    .compact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .compact {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 6px;
+      background: #fff;
+    }
+    .compact img, .compact .thumb {
+      width: 88px;
+      height: 58px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: var(--paper);
+    }
+    .compact h3 { font-size: 9.5px; margin-bottom: 2px; }
+    .compact p { font-size: 8px; line-height: 1.4; color: var(--muted); }
+    .compact .meta { font-size: 7.5px; color: var(--accent); font-weight: 600; margin-top: 3px; }
+
+    .cta-page {
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+    .cta-page h1 { font-size: 30px; max-width: 16ch; margin: 0 auto 10px; }
+    .cta-page .lead { max-width: 40ch; margin: 0 auto 14px; }
+    .cta-box {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: var(--gradient);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .cta-links { margin-top: 12px; font-size: 10px; color: var(--muted); }
+    .cta-links a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+    .role-pills { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .role-pills span {
+      font-size: 8px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: #1e40af;
+    }
+
+    .toolbar {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 99;
+    }
+    .toolbar button {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Save as PDF</button>
+  </div>
+
+  <!-- 1 · Cover -->
+  <section class="sheet cover">
+    <div class="cover-accent"></div>
+    <img class="cover-mark" src="../brand/mark-dark.png" alt="" />
+    <div>
+      <img class="cover-logo" src="../brand/logo-dark.png" alt="Scalevium" />
+      <h1>We Build Software That Moves Businesses Forward.</h1>
+      <p class="tagline">From Code to Crew, We Build for You.</p>
+      <p class="support">Custom software, web platforms, mobile applications, AI solutions, and dedicated engineering teams for ambitious businesses.</p>
+    </div>
+    <div class="cover-footer">
+      <span>Scalevium Technologies Inc.</span>
+      <span>scalevium.com · Portfolio 2026</span>
+    </div>
+  </section>
+
+  <!-- 2 · Who we are -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Who We Are</span>
+    </div>
+    <div class="intro-band">
+      <p class="eyebrow">Scalevium</p>
+      <h1 style="font-size:22px;margin-bottom:6px">Technology Built Around Your Business.</h1>
+      <p class="lead">Scalevium is a high-end software development and IT staff augmentation partner. We help founders and operators turn product ideas into reliable digital systems — custom web and mobile applications, AI-powered workflows, and dedicated engineers who work as an extension of your team. You get clear communication, production-ready delivery, and software shaped around real business outcomes — not technical jargon.</p>
+    </div>
+    <div class="grow">
+      <p class="section-label">How we partner</p>
+      <div class="service-grid two">
+        <div class="card soft">
+          <div class="icon">01</div>
+          <h3>Custom Product Development</h3>
+          <p>End-to-end builds from discovery through launch — one team accountable for the product your customers use.</p>
+        </div>
+        <div class="card soft">
+          <div class="icon">02</div>
+          <h3>Web &amp; Mobile Applications</h3>
+          <p>Customer-facing apps and internal tools designed for clarity, speed, and day-to-day operations.</p>
+        </div>
+        <div class="card soft">
+          <div class="icon">03</div>
+          <h3>AI &amp; Automation</h3>
+          <p>Practical AI that supports booking, intake, support, and operations — integrated with the tools you already run.</p>
+        </div>
+        <div class="card soft">
+          <div class="icon">04</div>
+          <h3>Dedicated Engineering Teams</h3>
+          <p>Senior developers embedded with your team — same standards, your roadmap, flexible engagement.</p>
+        </div>
+      </div>
+      <div class="impact" style="margin-top:auto">
+        <p><strong style="color:var(--ink)">Our focus:</strong> Software that simplifies operations, connects customers and staff, and scales with your business — explained in plain language, built with enterprise discipline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · What we do -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Capabilities</span>
+    </div>
+    <p class="eyebrow">What We Do</p>
+    <h1 style="font-size:20px;margin-bottom:8px">Full-stack capability for ambitious products.</h1>
+    <div class="service-grid grow">
+      <div class="card">
+        <div class="icon">◆</div>
+        <h3>Product Development</h3>
+        <p>From an initial idea to a production-ready digital product your team can operate and grow.</p>
+      </div>
+      <div class="card">
+        <div class="icon">◆</div>
+        <h3>Web Applications</h3>
+        <p>Modern web platforms for customers, partners, and internal teams — fast, secure, and easy to use.</p>
+      </div>
+      <div class="card">
+        <div class="icon">◆</div>
+        <h3>Mobile Applications</h3>
+        <p>Native-quality mobile experiences for field teams, consumers, and on-the-go workflows.</p>
+      </div>
+      <div class="card">
+        <div class="icon">◆</div>
+        <h3>AI &amp; Automation</h3>
+        <p>Voice agents, intelligent intake, and workflow automation tied to your existing systems.</p>
+      </div>
+      <div class="card">
+        <div class="icon">◆</div>
+        <h3>Backend &amp; API Development</h3>
+        <p>Reliable data layers, integrations, and APIs that keep your product consistent as you scale.</p>
+      </div>
+      <div class="card">
+        <div class="icon">◆</div>
+        <h3>UI/UX &amp; Frontend</h3>
+        <p>Interfaces that feel premium and intuitive — so users understand the product immediately.</p>
+      </div>
+      <div class="card">
+        <div class="icon">◆</div>
+        <h3>Cloud &amp; DevOps</h3>
+        <p>Deployment, monitoring, and release practices built for uptime and predictable launches.</p>
+      </div>
+      <div class="card">
+        <div class="icon">◆</div>
+        <h3>Dedicated Development Teams</h3>
+        <p>Add experienced engineers without the overhead of traditional hiring — project or long-term.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · ExperiHAUS 1 -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Case Study · ExperiHAUS</span>
+    </div>
+    <div class="project-hero">
+      <p class="eyebrow">Hospitality &amp; Guest Experience</p>
+      <h1>ExperiHAUS</h1>
+      <p class="oneliner">A modern hospitality platform connecting in-room guest experiences with staff operations — one system for digital guest services and property management.</p>
+    </div>
+    <figure class="mockup">
+      <img src="../case-studies/experihaus.png" alt="ExperiHAUS platform preview" />
+      <figcaption><strong>Guest &amp; staff experiences</strong>Digital hospitality layer for properties — guest-facing experiences and tools staff use to manage content and operations.</figcaption>
+    </figure>
+    <div class="cols-2 grow" style="margin-top:6px">
+      <div>
+        <p class="section-label">The challenge</p>
+        <ul class="checks">
+          <li>Properties needed a unified way to deliver digital guest services beyond a basic TV menu.</li>
+          <li>Guest and staff workflows had to stay separate — with clear access boundaries.</li>
+          <li>One backend had to power multiple client surfaces without duplicating work.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-label">What we built</p>
+        <ul class="checks">
+          <li>A shared platform backend serving guest in-room experiences and a staff admin dashboard.</li>
+          <li>Modular structure so property content and services can grow over time.</li>
+          <li>Secure session handling for guest vs. staff users on the same system.</li>
+        </ul>
+        <p class="section-label" style="margin-top:6px">Our role</p>
+        <div class="role-pills">
+          <span>Product development</span>
+          <span>Backend architecture</span>
+          <span>Admin dashboard</span>
+          <span>Smart TV client</span>
+          <span>API design</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · ExperiHAUS 2 -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>ExperiHAUS · Features</span>
+    </div>
+    <p class="section-label">Key features</p>
+    <div class="feature-grid" style="margin-bottom:8px">
+      <div class="card soft"><h3>In-Room Guest App</h3><p>Smart TV experiences that present property services and content to guests in a polished, on-brand interface.</p></div>
+      <div class="card soft"><h3>Staff Admin Dashboard</h3><p>Central place for property teams to manage what guests see and keep experiences up to date.</p></div>
+      <div class="card soft"><h3>Unified Backend</h3><p>One API layer powering multiple clients — less duplication, consistent data across touchpoints.</p></div>
+      <div class="card soft"><h3>Access Control</h3><p>Guest and staff sessions isolated with appropriate permissions for each audience.</p></div>
+      <div class="card soft"><h3>Modular Services</h3><p>Structured routing so new property features can be added without rebuilding the core.</p></div>
+      <div class="card soft"><h3>Production Ready</h3><p>Built for real properties and daily operations — not a prototype confined to a demo environment.</p></div>
+    </div>
+    <p class="section-label">Technology</p>
+    <div class="badges" style="margin-bottom:8px">
+      <span>NestJS</span><span>TypeScript</span><span>React</span><span>Smart TV</span><span>REST APIs</span>
+    </div>
+    <div class="impact">
+      <p class="section-label" style="color:var(--accent);margin-bottom:3px">Impact</p>
+      <p>Centralized hospitality digital layer for guest-facing and staff-facing workflows · Reduced fragmentation between in-room experience and back-office tools · Foundation to extend property services on one platform.</p>
+    </div>
+  </section>
+
+  <!-- 6 · Caribo 1 -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Case Study · Caribo</span>
+    </div>
+    <div class="project-hero">
+      <p class="eyebrow">Transportation &amp; Rentals</p>
+      <h1>Caribo</h1>
+      <p class="oneliner">A multi-vendor vehicle and boat rental platform — connecting travelers, rental vendors, fleet inventory, and administrators in one booking ecosystem.</p>
+    </div>
+    <figure class="mockup">
+      <img src="portfolio-assets/caribo-marketplace.svg" alt="Caribo marketplace and vendor views" />
+      <figcaption><strong>Marketplace &amp; vendor operations</strong>Customers discover rentals while vendors manage listings, availability, and orders from dedicated dashboards.</figcaption>
+    </figure>
+    <div class="cols-2 grow" style="margin-top:6px">
+      <div>
+        <p class="section-label">The challenge</p>
+        <ul class="checks">
+          <li>Multiple vendors needed to list vehicles and boats without sharing each other’s operational data.</li>
+          <li>Customers expected a simple discovery-to-booking flow across different rental types.</li>
+          <li>Admins required oversight of vendors, bookings, extensions, and platform rules.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-label">What we built</p>
+        <ul class="checks">
+          <li>Customer-facing rental discovery and booking journeys for vehicles and boats.</li>
+          <li>Vendor dashboards to manage inventory, pricing, availability, and orders.</li>
+          <li>Admin tools for platform governance, booking oversight, and workflow control.</li>
+          <li>Extension and order workflows so rentals can be managed after initial booking.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · Caribo 2 -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Caribo · Features</span>
+    </div>
+    <div class="feature-grid" style="margin-bottom:8px">
+      <div class="card soft"><h3>Multi-Vendor Listings</h3><p>Each vendor operates their catalog while customers see one cohesive marketplace.</p></div>
+      <div class="card soft"><h3>Booking Management</h3><p>Reservations, status updates, and rental timelines handled in one system.</p></div>
+      <div class="card soft"><h3>Vendor Dashboard</h3><p>Day-to-day tools for fleet owners to run rentals without spreadsheet workarounds.</p></div>
+      <div class="card soft"><h3>Admin Oversight</h3><p>Platform-level visibility into vendors, bookings, and operational exceptions.</p></div>
+      <div class="card soft"><h3>Extensions &amp; Orders</h3><p>Support for changes after booking — extensions and order flows stay traceable.</p></div>
+      <div class="card soft"><h3>Customer Experience</h3><p>Clear paths from search to confirmed rental across device types.</p></div>
+    </div>
+    <p class="section-label">Our role</p>
+    <div class="role-pills" style="margin-bottom:8px">
+      <span>Full-stack product development</span>
+      <span>Marketplace UX</span>
+      <span>Vendor &amp; admin dashboards</span>
+      <span>Booking workflows</span>
+      <span>API integrations</span>
+    </div>
+    <p class="section-label">Technology</p>
+    <div class="badges" style="margin-bottom:8px">
+      <span>React / Next.js</span><span>Node.js</span><span>PostgreSQL</span><span>REST APIs</span><span>AWS</span>
+    </div>
+    <div class="impact">
+      <p><strong style="color:var(--ink)">Impact:</strong> Connected customers, vendors, and administrators on one rental platform · Centralized booking and extension workflows · Scalable multi-vendor operations without manual coordination.</p>
+    </div>
+  </section>
+
+  <!-- 8 · TowCentric 1 -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Case Study · TowCentric</span>
+    </div>
+    <div class="project-hero">
+      <p class="eyebrow">Transportation &amp; Field Operations</p>
+      <h1>TowCentric</h1>
+      <p class="oneliner">A towing and roadside assistance platform that turns hardware alerts and field events into live dispatch work — so teams respond faster with full situational awareness.</p>
+    </div>
+    <figure class="mockup">
+      <img src="../case-studies/towcentric.png" alt="TowCentric dispatch dashboard" />
+      <figcaption><strong>Live dispatch dashboard</strong>Real-time view of tickets and fleet activity — dispatchers see updates as events arrive, without refreshing the screen.</figcaption>
+    </figure>
+    <div class="cols-2 grow" style="margin-top:6px">
+      <div>
+        <p class="section-label">The challenge</p>
+        <ul class="checks">
+          <li>License-plate and hardware alerts needed to become actionable dispatch tickets automatically.</li>
+          <li>Dispatchers could not rely on manual data entry during high-volume periods.</li>
+          <li>Operations required live visibility — not batch updates or delayed reports.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-label">What we built</p>
+        <ul class="checks">
+          <li>Backend ingestion that converts hardware webhook events into structured dispatch tickets.</li>
+          <li>Real-time dashboards powered by WebSocket updates for dispatch teams.</li>
+          <li>Workflow-oriented UI so operators track ticket state from alert to resolution.</li>
+        </ul>
+        <p class="section-label" style="margin-top:6px">Our role</p>
+        <div class="role-pills">
+          <span>Backend development</span>
+          <span>Real-time dashboards</span>
+          <span>Webhook integration</span>
+          <span>Frontend development</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · TowCentric 2 -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>TowCentric · Features</span>
+    </div>
+    <div class="feature-grid" style="margin-bottom:8px">
+      <div class="card soft"><h3>Hardware Ingestion</h3><p>Automated alerts from field hardware flow directly into the dispatch queue.</p></div>
+      <div class="card soft"><h3>Dispatch Tickets</h3><p>Structured tickets replace ad-hoc notes — each event is trackable.</p></div>
+      <div class="card soft"><h3>Live Dashboards</h3><p>WebSocket-driven UI keeps dispatch and management views current.</p></div>
+      <div class="card soft"><h3>Operational Workflow</h3><p>Designed around how towing and roadside teams actually work under pressure.</p></div>
+    </div>
+    <p class="section-label">Technology</p>
+    <div class="badges" style="margin-bottom:10px">
+      <span>Node.js / Express</span><span>React</span><span>WebSockets</span><span>Real-time APIs</span>
+    </div>
+    <div class="impact">
+      <p><strong style="color:var(--ink)">Impact:</strong> Automated path from hardware alert to dispatch ticket · Live operational visibility for dispatch teams · Reduced manual steps during event intake.</p>
+    </div>
+    <p class="section-label" style="margin-top:10px">Also in our portfolio</p>
+    <p class="body" style="margin-bottom:6px">DealsCracker, ActiveSOS, and Smart Parking — selected highlights on the following pages.</p>
+  </section>
+
+  <!-- 10 · DealsCracker -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Case Study · DealsCracker</span>
+    </div>
+    <div class="project-hero">
+      <p class="eyebrow">E-commerce &amp; Discovery</p>
+      <h1>DealsCracker</h1>
+      <p class="oneliner">A smart deals discovery and comparison platform — helping shoppers find offers, compare products, and save items they care about.</p>
+    </div>
+    <figure class="mockup" style="margin-bottom:8px">
+      <img src="portfolio-assets/dealscracker-discovery.svg" alt="DealsCracker product discovery" />
+      <figcaption><strong>Discovery &amp; comparison</strong>Browse deals by brand, compare options side by side, and keep shortlists for later decisions.</figcaption>
+    </figure>
+    <div class="cols-2">
+      <div>
+        <p class="section-label">The challenge</p>
+        <ul class="checks">
+          <li>Shoppers struggled to compare offers scattered across brands and categories.</li>
+          <li>The product needed fast search and clear product pages without overwhelming users.</li>
+          <li>Wishlist and deal surfaces had to encourage return visits without clutter.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-label">What we built</p>
+        <ul class="checks">
+          <li>Product discovery flows with brand pages and structured deal presentation.</li>
+          <li>Comparison experiences so users evaluate options in one place.</li>
+          <li>Wishlist and search to support research-heavy purchase decisions.</li>
+        </ul>
+        <p class="section-label" style="margin-top:6px">Technology</p>
+        <div class="badges"><span>Next.js</span><span>React</span><span>Node.js</span><span>PostgreSQL</span></div>
+      </div>
+    </div>
+    <div class="role-pills" style="margin-top:8px">
+      <span>Frontend development</span><span>Product UX</span><span>Backend &amp; APIs</span><span>Search &amp; catalog</span>
+    </div>
+  </section>
+
+  <!-- 11 · ActiveSOS -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Case Study · ActiveSOS</span>
+    </div>
+    <div class="project-hero">
+      <p class="eyebrow">Safety &amp; Family Technology</p>
+      <h1>ActiveSOS</h1>
+      <p class="oneliner">A child safety and tracing platform — mobile tools for families and dashboards for organizations that need visibility and coordinated response.</p>
+    </div>
+    <figure class="mockup" style="margin-bottom:8px">
+      <img src="portfolio-assets/activesos-mobile.svg" alt="ActiveSOS mobile and admin views" />
+      <figcaption><strong>Mobile &amp; organization views</strong>Family-facing mobile experience alongside organization dashboards for monitoring and administration.</figcaption>
+    </figure>
+    <div class="cols-2">
+      <div>
+        <p class="section-label">The challenge</p>
+        <ul class="checks">
+          <li>Families needed a straightforward mobile experience for safety-related workflows.</li>
+          <li>Organizations required admin views without exposing sensitive data inappropriately.</li>
+          <li>Tracking-related interfaces had to be clear under stress — simple, not technical.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-label">What we built</p>
+        <ul class="checks">
+          <li>Mobile application focused on the end-user (parent/guardian) perspective.</li>
+          <li>Admin and organization dashboards for operational oversight.</li>
+          <li>Structured flows for tracing and safety features with role-appropriate access.</li>
+        </ul>
+        <p class="section-label" style="margin-top:6px">Technology</p>
+        <div class="badges"><span>React Native</span><span>Node.js</span><span>React</span><span>PostgreSQL</span><span>AWS</span></div>
+      </div>
+    </div>
+    <div class="role-pills" style="margin-top:8px">
+      <span>Mobile development</span><span>Admin dashboards</span><span>Backend development</span><span>Role-based access</span>
+    </div>
+  </section>
+
+  <!-- 12 · Smart Parking + More work -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Smart Parking · More Work</span>
+    </div>
+    <div class="project-hero" style="margin-bottom:6px">
+      <p class="eyebrow">Operations &amp; Mobility</p>
+      <h1 style="font-size:18px">Smart Parking</h1>
+      <p class="oneliner" style="font-size:10px">A smart parking management solution — simplifying how operators monitor spaces, manage bookings, and run day-to-day parking workflows.</p>
+    </div>
+    <figure class="mockup" style="margin-bottom:10px">
+      <img src="portfolio-assets/smart-parking.svg" alt="Smart Parking management UI" />
+      <figcaption><strong>Operations dashboard</strong>At-a-glance occupancy and booking management for parking operators.</figcaption>
+    </figure>
+    <p class="section-label">More of our work</p>
+    <div class="compact-grid grow">
+      <div class="compact">
+        <img src="../case-studies/fleetquix-tripsheet.png" alt="FleetQuix" />
+        <div>
+          <h3>FleetQuix</h3>
+          <p>Multi-tenant transportation management for carriers — isolated workspaces and role-based access.</p>
+          <p class="meta">Logistics · TypeScript · React · MongoDB</p>
+        </div>
+      </div>
+      <div class="compact">
+        <img src="../case-studies/earthquickalert.png" alt="Earthquickalert" />
+        <div>
+          <h3>Earthquickalert</h3>
+          <p>Real-time disaster map unifying road closures and outage data with mobile field reporting.</p>
+          <p class="meta">Emergency / GIS · React Native · Leaflet</p>
+        </div>
+      </div>
+      <div class="compact">
+        <img src="../case-studies/stackone.png" alt="StackOne" />
+        <div>
+          <h3>StackOne</h3>
+          <p>Universal integration layer for HRIS, ATS, LMS, and CRM — Scalevium contributed integration &amp; webhook engineering.</p>
+          <p class="meta">Enterprise SaaS · APIs · Webhooks</p>
+        </div>
+      </div>
+      <div class="compact">
+        <img src="../case-studies/ai-hospitality-receptionist.png" alt="Hotel AI Receptionist" />
+        <div>
+          <h3>Hotel AI Receptionist</h3>
+          <p>Voice AI that answers reservation calls, quotes live rates, and syncs bookings to property systems.</p>
+          <p class="meta">Hospitality · Conversational AI</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · Industries -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Industries</span>
+    </div>
+    <p class="eyebrow">Where we deliver</p>
+    <h1 style="font-size:20px;margin-bottom:10px">Industries we build for.</h1>
+    <p class="lead" style="margin-bottom:10px">Experience drawn from the products in this portfolio — not generic claims.</p>
+    <div class="industry-grid grow">
+      <div class="industry">Hospitality &amp; Travel<small>ExperiHAUS · voice AI for hotels</small></div>
+      <div class="industry">Transportation<small>Caribo · TowCentric · FleetQuix</small></div>
+      <div class="industry">E-commerce<small>DealsCracker</small></div>
+      <div class="industry">Safety &amp; Family Tech<small>ActiveSOS</small></div>
+      <div class="industry">Mobility &amp; Parking<small>Smart Parking</small></div>
+      <div class="industry">Emergency &amp; GIS<small>Earthquickalert</small></div>
+      <div class="industry">Enterprise Integrations<small>StackOne</small></div>
+      <div class="industry">Healthcare &amp; Wellness<small>AI intake · med spa · dental</small></div>
+      <div class="industry">Fitness &amp; Studios<small>Automated gym booking AI</small></div>
+      <div class="industry">B2B SaaS<small>Multi-tenant platforms &amp; dispatch tools</small></div>
+    </div>
+  </section>
+
+  <!-- 14 · Process -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Process</span>
+    </div>
+    <p class="eyebrow">How we work</p>
+    <h1 style="font-size:20px;margin-bottom:12px">Our development process.</h1>
+    <div class="timeline grow">
+      <div class="step"><div class="num">01</div><strong>Discover</strong><span>Understand the business, users, and requirements.</span></div>
+      <div class="step"><div class="num">02</div><strong>Design</strong><span>Plan experience, flows, and product structure.</span></div>
+      <div class="step"><div class="num">03</div><strong>Build</strong><span>Develop core product functionality in iterations.</span></div>
+      <div class="step"><div class="num">04</div><strong>Integrate</strong><span>Connect payments, APIs, and third-party systems.</span></div>
+      <div class="step"><div class="num">05</div><strong>Test</strong><span>Validate usability, reliability, and edge cases.</span></div>
+      <div class="step"><div class="num">06</div><strong>Launch</strong><span>Deploy, monitor, and support production.</span></div>
+    </div>
+    <div class="intro-band" style="margin-top:auto">
+      <p class="body">Every phase is communicated in business terms — you always know what is being built, why it matters, and what comes next.</p>
+    </div>
+  </section>
+
+  <!-- 15 · Why Scalevium -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Why Scalevium</span>
+    </div>
+    <p class="eyebrow">Partnership</p>
+    <h1 style="font-size:20px;margin-bottom:10px">Why teams choose Scalevium.</h1>
+    <div class="service-grid two grow">
+      <div class="card soft">
+        <h3>Business First</h3>
+        <p class="body">We understand the problem before writing code — outcomes drive every technical decision.</p>
+      </div>
+      <div class="card soft">
+        <h3>Full-Stack Capability</h3>
+        <p class="body">From customer interface to backend infrastructure, integrations, and cloud deployment.</p>
+      </div>
+      <div class="card soft">
+        <h3>Production Mindset</h3>
+        <p class="body">Software built for real users, real operations, and long-term maintainability.</p>
+      </div>
+      <div class="card soft">
+        <h3>Flexible Engagement</h3>
+        <p class="body">Project-based delivery or dedicated engineers embedded with your team.</p>
+      </div>
+      <div class="card soft">
+        <h3>Clear Communication</h3>
+        <p class="body">Technical complexity translated into plain updates executives and founders can act on.</p>
+      </div>
+      <div class="card soft">
+        <h3>Long-Term Partnership</h3>
+        <p class="body">We can continue building, improving, and maintaining the product after launch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 · Staff augmentation -->
+  <section class="sheet">
+    <div class="page-bar">
+      <img src="../brand/logo-dark.png" alt="" />
+      <span>Staff Augmentation</span>
+    </div>
+    <p class="eyebrow">Scale your team</p>
+    <h1 style="font-size:19px;margin-bottom:6px">Extend your team without extending your headcount.</h1>
+    <p class="lead" style="margin-bottom:10px">Add experienced engineers to your existing team without the overhead of traditional hiring — same standards, your roadmap, flexible scale up or down.</p>
+    <p class="section-label">Team composition</p>
+    <div class="service-grid" style="margin-bottom:10px">
+      <div class="card"><h3>Full-Stack Developers</h3></div>
+      <div class="card"><h3>Backend Developers</h3></div>
+      <div class="card"><h3>Frontend Developers</h3></div>
+      <div class="card"><h3>Mobile Developers</h3></div>
+      <div class="card"><h3>AI / ML Engineers</h3></div>
+      <div class="card"><h3>QA Engineers</h3></div>
+      <div class="card"><h3>DevOps Engineers</h3></div>
+    </div>
+    <p class="section-label">Engagement models</p>
+    <div class="cols-2 grow">
+      <div class="card soft">
+        <h3>Dedicated Developer</h3>
+        <p class="body">One senior engineer embedded with your team — ideal for focused roadmap items or skill gaps.</p>
+      </div>
+      <div class="card soft">
+        <h3>Dedicated Team</h3>
+        <p class="body">A balanced squad (frontend, backend, QA) owning a product stream under your leadership.</p>
+      </div>
+      <div class="card soft" style="grid-column:1/-1">
+        <h3>Project-Based Team</h3>
+        <p class="body">A scoped team assembled for a defined release — discovery through launch with clear milestones.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 · CTA -->
+  <section class="sheet cta-page">
+    <img src="../brand/logo-dark.png" alt="Scalevium" style="height:28px;margin-bottom:16mm" />
+    <h1>Have a Product in Mind? Let's Build.</h1>
+    <p class="lead">Tell us what you are building. We will recommend product development, staff augmentation, or a dedicated team — and respond with a clear next step.</p>
+    <div class="cta-box">scalevium@gmail.com</div>
+    <p class="cta-links"><a href="https://scalevium.com/contact">scalevium.com/contact</a> · <a href="https://scalevium.com/case-studies">Case studies</a></p>
+  </section>
+</body>
+</html>
+
