@@ -1,6 +1,6 @@
 # 🚀 Scalevium — Engineering Without Limits
 
-> **Corporate Website for Scalevium**: Connecting ambitious enterprises with senior technology talent and building custom AI, cloud, and full-stack software solutions with uncompromised precision.
+> **Corporate Website for Scalevium**: Connecting ambitious enterprises with senior technology talent and building custom AI, cloud, and full-stack software solutions with uncompromised precision..
 
 ---
 
