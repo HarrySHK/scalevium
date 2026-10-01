@@ -23,15 +23,15 @@ export default function NotFound() {
             Page Not Found.
           </h1>
           <p className="section-sub-editorial" style={{ margin: "0 auto 2.5rem", maxWidth: "34rem" }}>
-            The requested URL could not be found. It may have been moved or updated. Use the links below to explore our services or return to the homepage.
+            This page doesn&apos;t exist. Go to the homepage or see our AI services.
           </p>
 
           <div style={{ display: "flex", justifyContent: "center", gap: "1.25rem", flexWrap: "wrap", alignItems: "center" }}>
             <Link href="/" className="btn-editorial-solid">
               <ArrowLeft size={16} aria-hidden="true" /> Back to Home
             </Link>
-            <Link href="/services" className="link-editorial">
-              Explore Services <ArrowUpRight size={15} aria-hidden="true" />
+            <Link href="/services/ai-development" className="link-editorial">
+              AI Services <ArrowUpRight size={15} aria-hidden="true" />
             </Link>
             <Link href="/case-studies" className="link-editorial">
               Case Studies <ArrowUpRight size={15} aria-hidden="true" />

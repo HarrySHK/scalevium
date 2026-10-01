@@ -18,13 +18,13 @@ const NAV_LINKS: NavItem[] = [
     label: "Services",
     path: "/services",
     dropdown: [
-      { label: "Talent Solutions", path: "/services/talent-solutions" },
-      { label: "Technology Solutions", path: "/services/technology-solutions" },
-      { label: "AI Development", path: "/services/ai-development" },
-      { label: "Full-Stack Development", path: "/services/full-stack-development" },
+      { label: "AI Services", path: "/services/ai-development" },
+      { label: "Web & Full-Stack", path: "/services/full-stack-development" },
+      { label: "Managed Engineering Pod", path: "/services/technology-solutions" },
+      { label: "Staff Augmentation", path: "/services/talent-solutions" },
     ],
   },
-  { label: "Case Studies", path: "/case-studies" },
+  { label: "Work", path: "/case-studies" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];
@@ -244,7 +244,7 @@ export default function Navbar() {
 
           <div style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
             <Link href="/contact" className="link-editorial desktop-nav" style={{ fontSize: "0.875rem" }}>
-              Get in Touch <ArrowUpRight size={15} aria-hidden="true" />
+              Book a free AI consultation <ArrowUpRight size={15} aria-hidden="true" />
             </Link>
             <button
               type="button"
@@ -400,7 +400,7 @@ export default function Navbar() {
               gap: "0.5rem",
             }}
           >
-            Get in Touch →
+            Book a free AI consultation →
           </Link>
         </div>
       </div>

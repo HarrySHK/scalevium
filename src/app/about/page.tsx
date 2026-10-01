@@ -5,16 +5,16 @@ import RevealHeading from "@/components/RevealHeading";
 import StepItem from "@/components/StepItem";
 
 export const metadata: Metadata = {
-  title: "About Scalevium | Senior Tech Talent & Managed Engineering Pods",
+  title: "About Scalevium | AI Engineering Team",
   description:
-    "Scalevium gives technology leaders senior engineering capacity without the risk, delay, or legal liability of domestic hiring — through vetting and managed pods.",
+    "Scalevium builds AI systems and the software around them for hospitality, healthcare, fitness, logistics, public safety, and SaaS — with production discipline after launch.",
   alternates: {
     canonical: "https://scalevium.com/about",
   },
   openGraph: {
-    title: "About Scalevium | Senior Tech Talent & Managed Engineering Pods",
+    title: "About Scalevium | AI Engineering Team",
     description:
-      "Scalevium gives technology leaders senior engineering capacity without the risk, delay, or legal liability of domestic hiring — through vetting and managed pods.",
+      "Scalevium builds AI systems and the software around them for hospitality, healthcare, fitness, logistics, public safety, and SaaS — with production discipline after launch.",
     url: "https://scalevium.com/about",
     siteName: "Scalevium",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "About Scalevium" }],
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Scalevium | Senior Tech Talent & Managed Engineering Pods",
+    title: "About Scalevium | AI Engineering Team",
     description:
-      "Scalevium gives technology leaders senior engineering capacity without the risk, delay, or legal liability of domestic hiring — through vetting and managed pods.",
+      "Scalevium builds AI systems and the software around them for hospitality, healthcare, fitness, logistics, public safety, and SaaS — with production discipline after launch.",
     images: ["/og-image.jpg"],
   },
 };
@@ -50,16 +50,16 @@ const aboutSchema = {
 };
 
 const STORY = [
-  { num: "01", title: "The problem", desc: "Hiring senior engineers domestically is slow and expensive; hiring offshore without a system is risky. Most companies pick one bad trade-off or the other." },
-  { num: "02", title: "The model", desc: "We built two tracks instead of one: staff augmentation for teams that just need capacity, and a fully managed pod — led by a Fractional CTO — for teams that need the outcome, not the management burden." },
-  { num: "03", title: "Today", desc: "A five-stage vetting funnel, a documented delivery playbook, and a contract and compliance stack reviewed by counsel — running both tracks side by side." },
+  { num: "01", title: "What we do", desc: "Scalevium Technologies Inc. builds AI agents, voice AI, and custom software that work inside the systems your business already uses." },
+  { num: "02", title: "Who we serve", desc: "Hospitality, healthcare, fitness, logistics, public safety, and SaaS teams — 11 shipped projects across 10 industries, including HIPAA-conscious AI for healthcare clients." },
+  { num: "03", title: "How we deliver", desc: "We start from the business problem, connect AI to real CRM, booking, and practice software, and stay with you after launch with monitoring, tuning, and support." },
 ];
 
 const VALUES = [
-  { num: "01", title: "We win on vetting, not price", description: "If a deal is only winnable by being the cheapest option, we walk away — a below-floor engagement costs the same management time as a profitable one." },
-  { num: "02", title: "Numbers tell you where to look", description: "Telemetry starts a conversation about performance. It never, on its own, ends someone's engagement — that takes a documented conversation." },
-  { num: "03", title: "A clean exit is a sales asset", description: "Full source, credentials, documentation, and a knowledge-transfer session on every closure. Clients who leave well come back, and they refer." },
-  { num: "04", title: "The pay-date guarantee is sacred", description: "Engineers are paid on the 5th of every month regardless of whether a client has paid us yet. We have never treated this as optional." },
+  { num: "01", title: "Business-first", description: "We start from the business problem and judge the work by what it changes for you." },
+  { num: "02", title: "AI plus full-stack", description: "Voice AI, agents, web, mobile, backend, and integrations from one team." },
+  { num: "03", title: "Production discipline", description: "Review, CI, and integration checks on every build." },
+  { num: "04", title: "Long-term partnership", description: "Monitoring, support, and improvement after launch — not a handoff and disappear." },
 ];
 
 const ROLES = [
@@ -79,21 +79,21 @@ export default function AboutPage() {
       />
       <section className="section-pad-hero">
         <div className="container">
-          <h1 className="sr-only">Crafted For Velocity. Built For Endurance.</h1>
-          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", marginBottom: 0 }} text="Crafted For Velocity." />
-          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", color: "var(--accent-light)" }} delay={0.22} text="Built For Endurance." />
+          <h1 className="sr-only">An AI Engineering Team That Stays With You After Launch.</h1>
+          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", marginBottom: 0 }} text="An AI Engineering Team" />
+          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", color: "var(--accent-light)" }} delay={0.22} text="That Stays After Launch." />
 
           <div style={{ marginTop: "3.75rem" }} className="grid-responsive-2">
             <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.75rem" }}>
-              <span className="eyebrow-minimal">OUR MISSION</span>
+              <span className="eyebrow-minimal">WHAT WE BUILD</span>
               <p style={{ fontSize: "1.125rem", lineHeight: 1.6, fontWeight: 500, color: "var(--text-primary)" }}>
-                Give technology leaders senior engineering capacity without the cost, delay, or legal liability of hiring domestically.
+                AI agents, voice AI, and custom software connected to the CRM, booking, and practice systems you already run.
               </p>
             </div>
             <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.75rem" }}>
-              <span className="eyebrow-minimal">HOW WE DO IT</span>
+              <span className="eyebrow-minimal">HOW WE WORK</span>
               <p style={{ fontSize: "1.125rem", lineHeight: 1.6, fontWeight: 500, color: "var(--text-primary)" }}>
-                Either by placing individually vetted engineers under your management, or by building and running a whole team for you.
+                We start from the business problem, build with production discipline, and keep improving the system after it goes live.
               </p>
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CTASection heading="Build The Future With Scalevium." description="Connect with our technical team to discuss your engineering roadmap." primaryLabel="Start a Conversation" primaryHref="/contact" />
+      <CTASection heading="Tell Us What You Want AI To Handle." description="Book a free consultation — we reply within one business day." primaryLabel="Book a free AI consultation" primaryHref="/contact" />
 
       <style>{`
         @media (max-width: 768px) {

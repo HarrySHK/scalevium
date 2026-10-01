@@ -69,12 +69,12 @@ export default function CaseStudyTeaser({ studies }: CaseStudyTeaserProps) {
     >
       <div className="container">
         <ScrollReveal>
-          <span className="eyebrow-minimal">SELECTED WORK</span>
+          <span className="eyebrow-minimal">CASE STUDIES</span>
         </ScrollReveal>
         <RevealHeading
           tag="h2"
           className="section-heading-editorial"
-          text="Built For Production."
+          text="AI Already Working For Businesses Like Yours."
           accentFrom={1}
           style={{ marginBottom: "2.75rem", maxWidth: "43.75rem" }}
         />
@@ -89,7 +89,7 @@ export default function CaseStudyTeaser({ studies }: CaseStudyTeaserProps) {
 
         <div style={{ marginTop: "2.25rem" }}>
           <Link href="/case-studies" className="link-editorial" style={{ fontSize: "0.9375rem" }}>
-            View all case studies <ArrowUpRight size={15} aria-hidden="true" />
+            See all work <ArrowUpRight size={15} aria-hidden="true" />
           </Link>
         </div>
       </div>

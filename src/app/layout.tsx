@@ -28,19 +28,17 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://scalevium.com"),
   title: {
-    default: "Scalevium — Engineering Without Limits | Senior Talent & AI Partnerships",
+    default: "Scalevium · AI Agents, Voice AI & Custom Software",
     template: "%s | Scalevium",
   },
   description:
-    "Scalevium connects ambitious enterprises with senior technology talent and builds custom AI, cloud, and full-stack software solutions with uncompromised precision.",
+    "AI voice agents, AI agents and custom software that connect to the tools your business already uses. Book a free AI consultation.",
   keywords: [
+    "AI Voice Agents",
+    "AI Agents",
+    "AI Integration",
     "Software Engineering",
-    "AI Development",
-    "Generative AI",
-    "Talent Solutions",
-    "Senior Developers",
-    "Cloud Architecture",
-    "Full-Stack Development",
+    "Staff Augmentation",
     "Scalevium",
   ],
   authors: [{ name: "Scalevium" }],
@@ -50,9 +48,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://scalevium.com",
     siteName: "Scalevium",
-    title: "Scalevium — Engineering Without Limits",
+    title: "Scalevium · AI Agents, Voice AI & Custom Software",
     description:
-      "Scalevium connects ambitious enterprises with senior technology talent and builds custom AI, cloud, and full-stack software solutions.",
+      "AI voice agents, AI agents and custom software that connect to the tools your business already uses.",
     images: [
       {
         url: "/og-image.jpg",
@@ -64,9 +62,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scalevium — Engineering Without Limits",
+    title: "Scalevium · AI Agents, Voice AI & Custom Software",
     description:
-      "Scalevium connects ambitious enterprises with senior technology talent and builds custom AI software solutions.",
+      "AI voice agents, AI agents and custom software that connect to the tools your business already uses.",
     creator: "@scalevium",
   },
   robots: {
@@ -90,7 +88,7 @@ const organizationSchema = {
   url: "https://scalevium.com",
   logo: "https://scalevium.com/brand/logo-dark.png",
   description:
-    "Scalevium connects ambitious enterprises with senior technology talent and builds custom AI, cloud, and full-stack software solutions.",
+    "Scalevium builds AI agents, voice AI, and custom software connected to the systems businesses already use.",
   email: CONTACT_EMAIL,
   sameAs: [LINKEDIN_URL],
   contactPoint: [
@@ -102,12 +100,11 @@ const organizationSchema = {
     },
   ],
   knowsAbout: [
+    "AI Voice Agents",
+    "AI Agents and Automation",
+    "AI Integration",
     "Software Engineering",
-    "Artificial Intelligence",
     "Staff Augmentation",
-    "Managed Engineering Pods",
-    "Generative AI",
-    "Cloud Architecture",
   ],
 };
 
@@ -116,7 +113,7 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "Scalevium",
   url: "https://scalevium.com",
-  description: "Senior Engineering Without Limits — Staff Augmentation & Custom AI Development Pods",
+  description: "Engineering without limits — AI agents, voice AI, and custom software",
   publisher: {
     "@type": "Organization",
     name: "Scalevium",

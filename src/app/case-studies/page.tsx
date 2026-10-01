@@ -6,16 +6,16 @@ import CaseStudiesClient from "@/components/CaseStudiesClient";
 import { CASE_STUDIES, getCaseStudyPortfolioFilters } from "@/lib/caseStudies";
 
 export const metadata: Metadata = {
-  title: "Case Studies — Selected Engineering Work",
+  title: "Case Studies · Scalevium",
   description:
-    "Production software and voice AI products built by Scalevium — logistics platforms, geospatial systems, integration infrastructure, and industry-specific AI receptionists.",
+    "6 AI systems and 5 software platforms across 10 industries — voice agents, booking AI, logistics platforms, and integration infrastructure.",
   alternates: {
     canonical: "https://scalevium.com/case-studies",
   },
   openGraph: {
-    title: "Case Studies — Selected Engineering Work | Scalevium",
+    title: "Case Studies · Scalevium",
     description:
-      "Production software and voice AI products built by Scalevium — logistics platforms, geospatial systems, integration infrastructure, and industry-specific AI receptionists.",
+      "6 AI systems and 5 software platforms across 10 industries — voice agents, booking AI, logistics platforms, and integration infrastructure.",
     url: "https://scalevium.com/case-studies",
     siteName: "Scalevium",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Scalevium Case Studies" }],
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Case Studies — Selected Engineering Work | Scalevium",
+    title: "Case Studies · Scalevium",
     description:
-      "Production software and voice AI products built by Scalevium — logistics platforms, geospatial systems, integration infrastructure, and industry-specific AI receptionists.",
+      "6 AI systems and 5 software platforms across 10 industries — voice agents, booking AI, logistics platforms, and integration infrastructure.",
     images: ["/og-image.jpg"],
   },
 };
@@ -62,18 +62,16 @@ export default function CaseStudiesPage() {
 
       <section className="section-pad-hero">
         <div className="container">
-          <span className="eyebrow-minimal">CASE STUDIES</span>
+          <span className="eyebrow-minimal">WORK</span>
           <RevealHeading
             tag="h1"
             className="hero-title"
             style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)" }}
-            text="Selected Work."
+            text="Work We've Shipped."
           />
           <ScrollReveal>
             <p className="section-sub-editorial" style={{ marginTop: "1.5rem", maxWidth: "42rem" }}>
-              Scalevium is an elite software engineering and AI solutions agency connecting ambitious
-              enterprises with senior technology talent and building custom AI, cloud, and full-stack
-              software with uncompromised precision.
+              6 AI systems and 5 software platforms across 10 industries — from voice agents that book on the call to fleet platforms and live dispatch dashboards.
             </p>
           </ScrollReveal>
         </div>
@@ -86,9 +84,9 @@ export default function CaseStudiesPage() {
       </section>
 
       <CTASection
-        heading="Have Something Similar In Mind?"
-        description="Tell us what you're building — we'll tell you which track fits, usually within one business day."
-        primaryLabel="Contact Scalevium"
+        heading="Tell Us What You Want AI To Handle."
+        description="Book a free consultation — we reply within one business day."
+        primaryLabel="Book a free AI consultation"
         primaryHref="/contact"
       />
     </div>

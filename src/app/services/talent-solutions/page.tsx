@@ -91,12 +91,12 @@ export default function TalentSolutionsPage() {
       />
       <section className="section-pad-hero">
         <div className="container">
-          <h1 className="sr-only">Talent Solutions: Senior Engineering. On Demand.</h1>
-          <span className="eyebrow-minimal" aria-hidden="true">TALENT SOLUTIONS</span>
-          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", marginBottom: 0 }} text="Senior Engineering." />
-          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", color: "var(--accent-light)" }} delay={0.22} text="On Demand." />
+          <h1 className="sr-only">Staff Augmentation: Extend Your Team Without Adding Headcount.</h1>
+          <span className="eyebrow-minimal" aria-hidden="true">STAFF AUGMENTATION</span>
+          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", marginBottom: 0 }} text="Extend Your Team" />
+          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", color: "var(--accent-light)" }} delay={0.22} text="Without Adding Headcount." />
           <p className="section-sub-editorial" style={{ marginTop: "1.75rem", maxWidth: "38.75rem" }}>
-            Vetted senior engineers who join your team under your management — placed within 48 hours, backed by a replacement guarantee.
+            Senior engineers join your team, work under your technical lead, and follow your process. Placement often happens within 48 hours of approval.
           </p>
         </div>
       </section>

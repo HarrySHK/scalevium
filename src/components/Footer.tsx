@@ -11,19 +11,27 @@ export default function Footer() {
     {
       title: "Company",
       links: [
+        { label: "Work", path: "/case-studies" },
         { label: "About", path: "/about" },
         { label: "Services", path: "/services" },
-        { label: "Case Studies", path: "/case-studies" },
         { label: "Contact", path: "/contact" },
       ],
     },
     {
-      title: "Capabilities",
+      title: "AI Services",
       links: [
-        { label: "Talent Solutions", path: "/services/talent-solutions" },
-        { label: "AI Development", path: "/services/ai-development" },
-        { label: "Full-Stack Engineering", path: "/services/full-stack-development" },
-        { label: "Technology Solutions", path: "/services/technology-solutions" },
+        { label: "AI Services Hub", path: "/services/ai-development" },
+        { label: "Voice Agents & Receptionists", path: "/services/ai-development" },
+        { label: "Agents & Automation", path: "/services/ai-development" },
+        { label: "Chat & Knowledge AI", path: "/services/ai-development" },
+      ],
+    },
+    {
+      title: "Software",
+      links: [
+        { label: "Web & Full-Stack", path: "/services/full-stack-development" },
+        { label: "Managed Engineering Pod", path: "/services/technology-solutions" },
+        { label: "Staff Augmentation", path: "/services/talent-solutions" },
       ],
     },
   ];
@@ -37,7 +45,7 @@ export default function Footer() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1.6fr 1fr 1fr 1fr",
+            gridTemplateColumns: "1.4fr 1fr 1fr 1fr 1fr",
             gap: "2.5rem",
             paddingBottom: "3.75rem",
             borderBottom: "1px solid var(--border-subtle)",
@@ -47,7 +55,7 @@ export default function Footer() {
           <div>
             <Logo size={26} />
             <p style={{ marginTop: "1.25rem", color: "var(--text-muted)", fontSize: "0.875rem", maxWidth: "17.5rem", lineHeight: 1.6 }}>
-              Engineering Without Limits. Senior talent & AI-native software partnerships.
+              Engineering without limits. AI agents, voice AI, and custom software connected to the tools you already use.
             </p>
           </div>
 
@@ -59,7 +67,7 @@ export default function Footer() {
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                 {col.links.map((l) => (
                   <Link
-                    key={l.path}
+                    key={l.label}
                     href={l.path}
                     style={{ fontSize: "0.875rem", color: "var(--text-muted)", transition: "color 0.2s ease" }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}

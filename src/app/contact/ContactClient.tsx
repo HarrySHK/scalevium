@@ -20,11 +20,21 @@ import {
 import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/site";
 import { formatNorthAmericanPhone } from "@/lib/phoneFormat";
 
-const INTERESTS = ["Staff Augmentation (hire an engineer)", "Managed Engineering Pod", "AI Development", "Full-Stack Development", "Not sure yet"];
+const INTERESTS = [
+  "AI voice agent",
+  "AI agent / automation",
+  "AI chat assistant",
+  "Knowledge AI",
+  "AI integration",
+  "AI strategy",
+  "Web or mobile app",
+  "Staff augmentation",
+  "Something else",
+];
 
 const INTEREST_QUERY_VALUES: Record<string, string> = {
-  "ai-development": "AI Development",
-  "AI Development": "AI Development",
+  "ai-development": "AI voice agent",
+  "AI Development": "AI voice agent",
 };
 const BUDGETS = ["Under $25k", "$25k – $75k", "$75k – $150k", "$150k+", "Not sure yet"];
 const TIMELINES = ["ASAP", "1–3 months", "3–6 months", "6+ months", "Just exploring"];
@@ -158,12 +168,12 @@ export default function ContactClient() {
 
       <section className="section-pad-hero">
         <div className="container">
-          <h1 className="sr-only">Start A Conversation: Let's Build Something That Matters.</h1>
-          <span className="eyebrow-minimal" aria-hidden="true">START A CONVERSATION</span>
-          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", marginBottom: 0 }} text="Let's Build Something" />
-          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", color: "var(--accent-light)" }} delay={0.22} text="That Matters." />
+          <h1 className="sr-only">Contact Scalevium: Tell Us What You Want To Build.</h1>
+          <span className="eyebrow-minimal" aria-hidden="true">CONTACT</span>
+          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", marginBottom: 0 }} text="Tell Us What You" />
+          <RevealHeading tag="span" aria-hidden="true" className="hero-title" style={{ maxWidth: "60rem", fontSize: "clamp(2.6rem, 6vw, 5.5rem)", color: "var(--accent-light)" }} delay={0.22} text="Want To Build." />
           <p className="section-sub-editorial" style={{ marginTop: "1.5rem", maxWidth: "38.75rem" }}>
-            Share details about your team goals, architectural needs, or product timeline. We respond within one business day.
+            We reply within one business day. Share what you want AI or software to handle, and we will map a clear next step.
           </p>
         </div>
       </section>

@@ -16,7 +16,7 @@ export default function AISolutionsByIndustry() {
           tag="h2"
           className="section-heading-editorial"
           style={{ marginBottom: "2.5rem", maxWidth: "43.75rem" }}
-          text="AI Solutions by Industry."
+          text="Built For Your Industry."
           accentFrom={2}
         />
         <div style={{ borderTop: "1px solid var(--border-subtle)" }}>

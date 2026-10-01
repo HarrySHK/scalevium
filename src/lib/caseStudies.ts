@@ -364,9 +364,12 @@ export const CASE_STUDIES: CaseStudy[] = [
 ];
 
 export const HOMEPAGE_CASE_STUDY_SLUGS = [
-  "fleetquix-tripsheet",
-  "earthquickalert",
-  "experihaus",
+  "ai-hospitality-receptionist",
+  "ai-dental-receptionist",
+  "ai-therapy-receptionist",
+  "ai-med-spa-receptionist",
+  "ai-gym-receptionist",
+  "ai-spa-receptionist",
 ] as const;
 
 export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
