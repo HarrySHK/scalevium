@@ -389,22 +389,24 @@ export default function HomeClient() {
               Scalevium builds AI that closes these gaps and connects to the software you already pay for.
             </p>
           </ScrollReveal>
-          <div className="grid-responsive-3" data-motion-bento>
-            {PROBLEM_ITEMS.map((it) => {
+          <div className="grid-responsive-3 gap-board" data-motion-bento>
+            {PROBLEM_ITEMS.map((it, i) => {
               const IconComp = it.icon.type;
               return (
                 <ScrollReveal key={it.industry}>
-                  <div className="bento-card problem-card">
+                  <article className="bento-card problem-card">
+                    <span className="problem-card-index" aria-hidden="true">{`0${i + 1}`}</span>
+                    <span className="problem-card-scan" aria-hidden="true" />
                     <div className="problem-card-icon">
-                      <IconComp size={22} />
+                      <IconComp size={20} />
                     </div>
-                    <h3 style={{ fontSize: "1.125rem", fontWeight: 600, color: "var(--text-card-primary)", marginBottom: "0.625rem" }}>
-                      {it.industry}
-                    </h3>
-                    <p style={{ fontSize: "0.875rem", color: "var(--text-card-muted)", lineHeight: 1.6 }}>
-                      {it.useCase}
+                    <p className="problem-card-kicker">
+                      <span className="problem-card-dot" aria-hidden="true" />
+                      Open gap
                     </p>
-                  </div>
+                    <h3 className="problem-card-title">{it.industry}</h3>
+                    <p className="problem-card-copy">{it.useCase}</p>
+                  </article>
                 </ScrollReveal>
               );
             })}
