@@ -163,7 +163,7 @@ export default function TalentSolutionsPage() {
         </div>
       </section>
 
-      <CTASection heading="Find Your Next Senior Engineer." description="Share your requirements and team composition — proposals typically go out within one business day." primaryLabel="Hire Senior Engineers" primaryHref="/contact" />
+      <CTASection heading="Find Your Next Senior Engineer." description="Share your requirements and team composition — proposals typically go out within one business day." primaryHref="/contact" />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import { Check, Hotel, HeartPulse, Dumbbell, Truck, MapPin, Layers, PhoneOff, FileStack, Unplug, ArrowUpRight } from "lucide-react";
+import { Check, Hotel, HeartPulse, Dumbbell, Truck, MapPin, Layers, PhoneOff, FileStack, Unplug, Globe, Smartphone, Server, Cloud, ArrowUpRight, Target, ShieldCheck, Lock, MessageSquare, Handshake } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import CTASection from "@/components/CTASection";
 import RevealHeading from "@/components/RevealHeading";
@@ -18,9 +18,14 @@ import TiltCard from "@/components/TiltCard";
 import StepItem from "@/components/StepItem";
 import FAQAccordion from "@/components/FAQAccordion";
 import CaseStudyTeaser from "@/components/CaseStudyTeaser";
+import PremiumPlatformGrid from "@/components/PremiumPlatformGrid";
+import PremiumIndustryGrid from "@/components/PremiumIndustryGrid";
 import { getHomepageCaseStudies } from "@/lib/caseStudies";
 import { prefersReducedMotion } from "@/lib/prefersReducedMotion";
 import { CONTACT_EMAIL } from "@/lib/site";
+import { MotionLayerContext } from "@/components/motion/MotionLayerContext";
+import HomeHeroVisual from "@/components/home/HomeHeroVisual";
+import { useHomeMotion } from "@/hooks/useHomeMotion";
 gsap.registerPlugin(ScrollTrigger);
 
 const CAPABILITIES = [
@@ -55,10 +60,30 @@ const AI_SERVICE_ITEMS = [
 ];
 
 const SOFTWARE_ITEMS = [
-  { title: "Web Apps & SaaS", desc: "Multi-tenant SaaS, dashboards, portals, and internal tools — TypeScript, React, and Next.js." },
-  { title: "Mobile Apps", desc: "iOS, Android, and Smart TV apps with offline support, push notifications, and maps." },
-  { title: "Backend, APIs & Integrations", desc: "REST and real-time APIs, webhooks, hardware integrations, and unified API layers." },
-  { title: "Cloud & DevOps", desc: "AWS deployment, infrastructure as code, CI/CD, monitoring, and cost optimisation." },
+  {
+    title: "Web Apps & SaaS",
+    desc: "Multi-tenant SaaS platforms, reactive command dashboards, and client portals engineered with TypeScript, React, and Next.js.",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    icon: Globe,
+  },
+  {
+    title: "Mobile Applications",
+    desc: "Native and cross-platform mobile apps with offline synchronization, push notifications, and high-performance tactile interactions.",
+    tags: ["React Native", "iOS", "Android", "Offline Sync"],
+    icon: Smartphone,
+  },
+  {
+    title: "Backend, APIs & Integrations",
+    desc: "High-throughput REST and GraphQL endpoints, bi-directional webhooks, unified middleware, and secure Model Context Protocol (MCP) servers.",
+    tags: ["Node / Python", "GraphQL", "Webhooks", "MCP Servers"],
+    icon: Server,
+  },
+  {
+    title: "Cloud & DevOps Infrastructure",
+    desc: "Production-grade AWS deployments, Docker container orchestration, automated CI/CD pipelines, observability, and compliance auditing.",
+    tags: ["AWS", "Docker", "CI/CD", "IaC / Terraform"],
+    icon: Cloud,
+  },
 ];
 
 const INDUSTRIES = [
@@ -71,12 +96,48 @@ const INDUSTRIES = [
 ];
 
 const TRUST_ITEMS = [
-  { num: "01", title: "Business-first", description: "We start from the business problem and judge the work by what it changes for you." },
-  { num: "02", title: "AI plus full-stack", description: "Voice AI, agents, web, mobile, backend, and integrations from one team." },
-  { num: "03", title: "Production discipline", description: "Review, CI, and integration checks on every build." },
-  { num: "04", title: "Compliance-aware", description: "HIPAA-conscious AI, IP chain-of-title, and sanctions screening where applicable." },
-  { num: "05", title: "Clear communication", description: "Regular demos and plain-language progress updates." },
-  { num: "06", title: "Long-term partnership", description: "Monitoring, support, and improvement after launch." },
+  {
+    num: "01",
+    title: "Business-first",
+    description: "We start from the business problem and judge the work by what it changes for you.",
+    tag: "ROI & Outcomes",
+    icon: Target,
+  },
+  {
+    num: "02",
+    title: "AI plus full-stack",
+    description: "Voice AI, agents, web, mobile, backend, and integrations from one team.",
+    tag: "Unified Delivery",
+    icon: Layers,
+  },
+  {
+    num: "03",
+    title: "Production discipline",
+    description: "Review, CI, and integration checks on every build.",
+    tag: "Automated CI/CD",
+    icon: ShieldCheck,
+  },
+  {
+    num: "04",
+    title: "Compliance-aware",
+    description: "HIPAA-conscious AI, IP chain-of-title, and sanctions screening where applicable.",
+    tag: "HIPAA & IP Cleared",
+    icon: Lock,
+  },
+  {
+    num: "05",
+    title: "Clear communication",
+    description: "Regular demos and plain-language progress updates.",
+    tag: "Weekly Demos",
+    icon: MessageSquare,
+  },
+  {
+    num: "06",
+    title: "Long-term partnership",
+    description: "Monitoring, support, and improvement after launch.",
+    tag: "Post-Launch SLA",
+    icon: Handshake,
+  },
 ];
 
 const PROCESS_ITEMS = [
@@ -179,8 +240,11 @@ function StatusPanel() {
 }
 
 export default function HomeClient() {
+  const rootRef = useRef<HTMLDivElement>(null);
   const processListRef = useRef<HTMLDivElement>(null);
   const processFillRef = useRef<HTMLDivElement>(null);
+
+  useHomeMotion(rootRef);
 
   useEffect(() => {
     if (!processListRef.current || !processFillRef.current) return;
@@ -211,17 +275,49 @@ export default function HomeClient() {
   }, []);
 
   return (
-    <div>
+    <MotionLayerContext.Provider value={true}>
+    <div ref={rootRef} className="home-motion-root">
       {/* HERO */}
-      <section className="section-pad-hero" style={{ position: "relative", minHeight: "80vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
+      <section
+        className="section-pad-hero"
+        data-home-hero
+        data-nav-section="/"
+        style={{ position: "relative", minHeight: "80vh", display: "flex", alignItems: "center", overflow: "hidden" }}
+      >
+        <div className="motion-glow-field" aria-hidden="true">
+          <span className="motion-glow-blob motion-glow-blob--hero-a" data-glow-blob data-depth="1.4" />
+          <span className="motion-glow-blob motion-glow-blob--hero-b" data-glow-blob data-depth="0.9" />
+        </div>
         <div className="container" style={{ position: "relative", zIndex: 2, maxWidth: "67.5rem" }}>
-          <span className="eyebrow-minimal">AI ENGINEERING COMPANY</span>
-          <RevealHeading tag="h1" className="hero-title" text="AI That Answers, Books And Gets Work Done Inside Your Business." accentFrom={5} />
-          <div style={{ marginTop: "2.5rem", display: "flex", flexDirection: "column", gap: "2rem", maxWidth: "40rem" }}>
-            <p className="section-sub-editorial">
-              We build voice agents, AI agents and assistants, connect them to the software you already run, and build the web and mobile products around them.
+          <HomeHeroVisual />
+          <span className="eyebrow-minimal" data-hero-eyebrow data-hero-reveal>AI ENGINEERING COMPANY</span>
+          <h1 className="hero-title-stack hero-title-stack--three" data-hero-title data-hero-reveal>
+            <RevealHeading
+              tag="span"
+              aria-hidden="true"
+              className="hero-title hero-title--primary"
+              text="One AI."
+            />
+            <RevealHeading
+              tag="span"
+              aria-hidden="true"
+              className="hero-title hero-title--primary"
+              delay={0.12}
+              text="Every Workflow."
+            />
+            <RevealHeading
+              tag="span"
+              aria-hidden="true"
+              className="hero-title hero-title--accent"
+              delay={0.24}
+              text="Zero Friction."
+            />
+          </h1>
+          <div style={{ marginTop: "2.5rem", display: "flex", flexDirection: "column", gap: "2rem", maxWidth: "36rem" }}>
+            <p className="section-sub-editorial hero-lede" data-hero-lede data-hero-reveal>
+              Voice agents and AI assistants connected to the software you already use—so calls get answered, work gets done, and your team stays focused on what matters.
             </p>
-            <div style={{ display: "flex", gap: "1.25rem", flexWrap: "wrap", alignItems: "center" }}>
+            <div data-hero-actions data-hero-reveal style={{ display: "flex", gap: "1.25rem", flexWrap: "wrap", alignItems: "center" }}>
               <Button href="/contact">Book a free AI consultation</Button>
               <Button variant="link" href="/case-studies">See AI in action</Button>
             </div>
@@ -229,23 +325,33 @@ export default function HomeClient() {
         </div>
       </section>
 
-      <MarqueeBand items={CAPABILITIES} speed={38} />
+      <div data-motion-marquee>
+        <MarqueeBand items={CAPABILITIES} speed={38} />
+      </div>
 
       {/* STATS */}
-      <section className="section-pad-standard" style={{ position: "relative", zIndex: 3 }}>
+      <section className="section-pad-standard home-stats-section" aria-labelledby="home-stats-heading" data-nav-section="/">
         <div className="container">
-          <div className="grid-responsive-4">
-            {STATS.map((s) => (
-              <div key={s.label} style={{ height: "100%" }}>
+          <ScrollReveal>
+            <div className="home-stats-header">
+              <span className="eyebrow-minimal">BY THE NUMBERS</span>
+              <h2 id="home-stats-heading" className="home-stats-title">
+                Production AI and software, shipped.
+              </h2>
+            </div>
+          </ScrollReveal>
+          <div className="grid-responsive-4 home-stats-grid">
+            {STATS.map((s, i) => (
+              <ScrollReveal key={s.label} className="home-stats-grid-item" delay={i * 0.06}>
                 <StatCard {...s} />
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* INSIDE A MANAGED POD */}
-      <section className="section-pad-standard" style={{ borderTop: "1px solid var(--border-subtle)", overflow: "hidden", position: "relative", zIndex: 3 }}>
+      <section className="section-pad-standard" data-nav-section="/" style={{ borderTop: "1px solid var(--border-subtle)", overflow: "hidden", position: "relative", zIndex: 3 }}>
         <div className="container two-col-split">
           <div>
             <span className="eyebrow-minimal">HOW OUR AI WORKS</span>
@@ -260,7 +366,7 @@ export default function HomeClient() {
                 "Acts — books, updates records, sends messages in your systems",
                 "Hands off — passes anything sensitive or complex to your team, with a summary",
               ].map((t) => (
-                <div key={t} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+                <div key={t} data-check-item style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
                   <Check size={15} color="var(--accent-light)" style={{ marginTop: 2, flexShrink: 0 }} />
                   <span style={{ fontSize: "0.90625rem", color: "var(--text-muted)", lineHeight: 1.6 }}>{t}</span>
                 </div>
@@ -272,7 +378,7 @@ export default function HomeClient() {
       </section>
 
       {/* COMPARISON */}
-      <section className="section-pad-standard" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
+      <section className="section-pad-standard" data-nav-section="/" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
         <div className="container">
           <ScrollReveal>
             <span className="eyebrow-minimal">THE GAP</span>
@@ -283,20 +389,31 @@ export default function HomeClient() {
               Scalevium builds AI that closes these gaps and connects to the software you already pay for.
             </p>
           </ScrollReveal>
-          <div className="grid-responsive-3">
-            {PROBLEM_ITEMS.map((it) => (
-              <ScrollReveal key={it.industry}>
-                <TiltCard padding={0} glow={false}>
-                  <IndustryCard {...it} />
-                </TiltCard>
-              </ScrollReveal>
-            ))}
+          <div className="grid-responsive-3" data-motion-bento>
+            {PROBLEM_ITEMS.map((it) => {
+              const IconComp = it.icon.type;
+              return (
+                <ScrollReveal key={it.industry}>
+                  <div className="bento-card problem-card">
+                    <div className="problem-card-icon">
+                      <IconComp size={22} />
+                    </div>
+                    <h3 style={{ fontSize: "1.125rem", fontWeight: 600, color: "var(--text-card-primary)", marginBottom: "0.625rem" }}>
+                      {it.industry}
+                    </h3>
+                    <p style={{ fontSize: "0.875rem", color: "var(--text-card-muted)", lineHeight: 1.6 }}>
+                      {it.useCase}
+                    </p>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* TECHNICAL DOMAINS */}
-      <section className="section-pad-standard" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
+      {/* TECHNICAL DOMAINS - AI SERVICES */}
+      <section className="section-pad-standard" data-nav-section="/services" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
         <div className="container">
           <ScrollReveal>
             <span className="eyebrow-minimal">AI SERVICES</span>
@@ -312,106 +429,71 @@ export default function HomeClient() {
               <EditorialRow key={item.title} index={`0${i + 1}`} title={item.title} description={item.desc} />
             ))}
           </div>
-          <div style={{ marginTop: "3.75rem" }}>
-            <ScrollReveal>
-              <span className="eyebrow-minimal">SOFTWARE ENGINEERING</span>
-            </ScrollReveal>
-          </div>
-          <RevealHeading tag="h2" className="section-heading-editorial" text="The Platforms Your AI Runs On." accentFrom={3} style={{ marginTop: "1rem", marginBottom: "1rem", maxWidth: "43.75rem" }} />
+        </div>
+      </section>
+
+      {/* PLATFORMS & SOFTWARE ENGINEERING */}
+      <section className="section-pad-standard" data-nav-section="/services" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
+        <div className="container">
+          <ScrollReveal>
+            <span className="eyebrow-minimal">SOFTWARE ENGINEERING</span>
+          </ScrollReveal>
+          <RevealHeading tag="h2" className="section-heading-editorial" text="The Platforms Your AI Runs On." accentFrom={3} style={{ marginBottom: "1rem", maxWidth: "43.75rem" }} />
           <ScrollReveal>
             <p className="section-sub-editorial" style={{ marginBottom: "2.5rem", maxWidth: "38.75rem" }}>
-              We also design and build complete web, mobile, and backend products. Many of our AI projects start here.
+              We design and build complete web, mobile, and backend products around your AI systems. Many of our AI projects start here.
             </p>
           </ScrollReveal>
-          <div style={{ borderTop: "1px solid var(--border-subtle)" }}>
-            {SOFTWARE_ITEMS.map((item, i) => (
-              <Link key={item.title} href="/services/full-stack-development" style={{ display: "block" }}>
-                <EditorialRow index={`0${i + 1}`} title={item.title} description={item.desc} />
-              </Link>
-            ))}
-          </div>
+          <PremiumPlatformGrid />
         </div>
       </section>
 
       {/* INDUSTRIES */}
-      <section className="section-pad-standard" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
+      <section className="section-pad-standard" data-nav-section="/services" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
         <div className="container">
           <ScrollReveal>
             <span className="eyebrow-minimal">INDUSTRIES</span>
           </ScrollReveal>
           <RevealHeading tag="h2" className="section-heading-editorial" text="Built For Your Industry." accentFrom={2} style={{ marginBottom: "2.75rem" }} />
-          <div className="grid-responsive-3">
-            {INDUSTRIES.map((it) => (
-              <ScrollReveal key={it.industry}>
-                <TiltCard padding={0} glow={false}>
-                  <IndustryCard {...it} />
-                </TiltCard>
-              </ScrollReveal>
-            ))}
-          </div>
+          <PremiumIndustryGrid />
         </div>
       </section>
 
-      {/* TRUST & SECURITY */}
-      <section className="section-pad-standard" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
-        <div className="container">
-          <ScrollReveal>
-            <span className="eyebrow-minimal">WHY SCALEVIUM</span>
-          </ScrollReveal>
-          <RevealHeading tag="h2" className="section-heading-editorial" text="Why Teams Choose Scalevium." accentFrom={2} style={{ marginBottom: "3.75rem", maxWidth: "43.75rem" }} />
-          <div className="grid-responsive-2">
-            {TRUST_ITEMS.map((item) => (
-              <ScrollReveal key={item.num}>
-                <StepItem {...item} />
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* PROCESS */}
-      <section className="section-pad-standard" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
-        <div className="container responsive-timeline-container">
+      <section className="section-pad-standard" data-nav-section="/about" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
+        <div className="container">
           <ScrollReveal>
             <span className="eyebrow-minimal">PROCESS</span>
           </ScrollReveal>
           <RevealHeading tag="h2" className="section-heading-editorial" text="From First Call To Live System." accentFrom={3} style={{ marginBottom: "3.75rem" }} />
-          <div className="responsive-timeline-line">
-            <div ref={processFillRef} style={{ width: "100%", height: "100%", background: "var(--accent-light)", transform: "scaleY(0)" }} />
+          <div className="responsive-timeline-container">
+            <div className="responsive-timeline-line">
+              <div ref={processFillRef} style={{ width: "100%", height: "100%", background: "var(--accent-light)", transform: "scaleY(0)" }} />
+            </div>
+            <div ref={processListRef} data-motion-process style={{ display: "flex", flexDirection: "column", gap: "3.125rem" }}>
+              {PROCESS_ITEMS.map((s) => (
+                <ScrollReveal key={s.num}>
+                  <StepItem {...s} variant="timeline" />
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
-          <div ref={processListRef} style={{ display: "flex", flexDirection: "column", gap: "3.125rem" }}>
-            {PROCESS_ITEMS.map((s) => (
-              <ScrollReveal key={s.num}>
-                <StepItem {...s} variant="timeline" />
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="section-pad-standard" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
-        <div className="container">
-          <ScrollReveal>
-            <span className="eyebrow-minimal">FAQ</span>
-          </ScrollReveal>
-          <RevealHeading tag="h2" className="section-heading-editorial" text="Common Questions." accentFrom={1} style={{ marginBottom: "1.875rem", maxWidth: "43.75rem" }} />
-          <FAQAccordion items={FAQ_ITEMS} />
         </div>
       </section>
 
       <CaseStudyTeaser studies={getHomepageCaseStudies()} />
 
-      <section className="section-pad-standard" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
-        <div className="container" style={{ textAlign: "center", maxWidth: "40rem" }}>
+      {/* FAQ */}
+      <section className="section-pad-standard" data-nav-section="/about" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
+        <div className="container">
           <ScrollReveal>
-            <p style={{ fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.65 }}>
-              Need engineers on your own team? We place vetted senior developers, often within 48 hours of approval.
-            </p>
-            <Link href="/services/talent-solutions" className="link-editorial" style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", marginTop: "1.25rem", fontSize: "0.9375rem" }}>
-              Explore staff augmentation <ArrowUpRight size={15} aria-hidden="true" />
-            </Link>
+            <span className="eyebrow-minimal">FAQ</span>
           </ScrollReveal>
+          <RevealHeading tag="h2" className="section-heading-editorial" text="Common Questions." accentFrom={1} style={{ marginBottom: "1.875rem", maxWidth: "43.75rem" }} />
+          <div data-motion-faq>
+            <FAQAccordion items={FAQ_ITEMS} />
+          </div>
         </div>
       </section>
 
@@ -423,5 +505,6 @@ export default function HomeClient() {
         secondaryHref={`mailto:${CONTACT_EMAIL}`}
       />
     </div>
+    </MotionLayerContext.Provider>
   );
 }

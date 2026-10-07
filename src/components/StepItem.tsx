@@ -39,7 +39,7 @@ export default function StepItem({ num, title, description, variant = "top-rule"
         <style>{`
           @media (max-width: 640px) {
             .timeline-badge {
-              left: -2.35rem !important;
+              left: -2.5rem !important;
               width: 1.625rem !important;
               height: 1.625rem !important;
               font-size: 0.6875rem !important;

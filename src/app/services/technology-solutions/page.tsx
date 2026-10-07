@@ -110,18 +110,20 @@ export default function TechnologySolutionsPage() {
       </section>
 
       <section className="section-pad-standard" style={{ borderTop: "1px solid var(--border-subtle)" }}>
-        <div className="container responsive-timeline-container">
+        <div className="container">
           <ScrollReveal>
             <span className="eyebrow-minimal">DELIVERY PIPELINE</span>
           </ScrollReveal>
           <RevealHeading tag="h2" className="section-heading-editorial" style={{ marginBottom: "3.75rem" }} text="Five Stages, Defined Exit Criteria." accentFrom={2} />
-          <div className="responsive-timeline-line" />
-          <div style={{ display: "flex", flexDirection: "column", gap: "2.75rem" }}>
-            {STAGES.map((s) => (
-              <ScrollReveal key={s.num}>
-                <StepItem {...s} variant="timeline" />
-              </ScrollReveal>
-            ))}
+          <div className="responsive-timeline-container">
+            <div className="responsive-timeline-line" />
+            <div style={{ display: "flex", flexDirection: "column", gap: "2.75rem" }}>
+              {STAGES.map((s) => (
+                <ScrollReveal key={s.num}>
+                  <StepItem {...s} variant="timeline" />
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -140,7 +142,7 @@ export default function TechnologySolutionsPage() {
         </div>
       </section>
 
-      <CTASection heading="Deploy A Pod, Not A Headcount Problem." description="Start with a paid Diagnostic Scoping Phase — it's billable either way, and it tells you exactly what to build." primaryLabel="Start a Diagnostic" primaryHref="/contact" />
+      <CTASection heading="Deploy A Pod, Not A Headcount Problem." description="Start with a paid Diagnostic Scoping Phase — it's billable either way, and it tells you exactly what to build." primaryHref="/contact" />
     </div>
   );
 }

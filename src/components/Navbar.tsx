@@ -4,7 +4,12 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X, ArrowUpRight } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Logo from "./Logo";
+import { prefersReducedMotion } from "@/lib/prefersReducedMotion";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface NavItem {
   label: string;
@@ -35,7 +40,13 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const servicesTriggerRef = useRef<HTMLAnchorElement>(null);
+  const servicesTriggerRef = useRef<HTMLAnchorElement | null>(null);
+  const isHome = pathname === "/";
+  const [spyPath, setSpyPath] = useState("/");
+  const [pastHero, setPastHero] = useState(false);
+  const desktopNavRef = useRef<HTMLDivElement>(null);
+  const spyIndicatorRef = useRef<HTMLSpanElement>(null);
+  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   const focusServicesMenuItem = (index: number, items: { path: string }[]) => {
     if (index < 0 || index >= items.length) return;
@@ -52,6 +63,70 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Home only: scroll-spy over tagged sections + "past the hero" state for the solid background.
+  useEffect(() => {
+    setSpyPath("/");
+    setPastHero(false);
+    if (!isHome) return;
+
+    let triggers: ScrollTrigger[] = [];
+    const frame = requestAnimationFrame(() => {
+      triggers = Array.from(document.querySelectorAll<HTMLElement>("[data-nav-section]")).map((section) =>
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top 45%",
+          end: "bottom 45%",
+          onToggle: (self) => {
+            if (self.isActive) setSpyPath(section.dataset.navSection || "/");
+          },
+        })
+      );
+      const hero = document.querySelector("[data-home-hero]");
+      if (hero) {
+        triggers.push(
+          ScrollTrigger.create({
+            trigger: hero,
+            start: "bottom 96px",
+            onEnter: () => setPastHero(true),
+            onLeaveBack: () => setPastHero(false),
+          })
+        );
+      }
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+      triggers.forEach((t) => t.kill());
+    };
+  }, [isHome]);
+
+  useEffect(() => {
+    const nav = desktopNavRef.current;
+    const indicator = spyIndicatorRef.current;
+    if (!nav || !indicator || !isHome) return;
+
+    const place = (immediate: boolean) => {
+      const link = linkRefs.current[spyPath];
+      if (!link) return;
+      const navRect = nav.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+      gsap.to(indicator, {
+        x: linkRect.left - navRect.left,
+        y: linkRect.bottom - navRect.top - 1,
+        scaleX: linkRect.width / 100,
+        opacity: 1,
+        duration: immediate || prefersReducedMotion() ? 0 : 0.55,
+        ease: "expo.out",
+        overwrite: true,
+      });
+    };
+
+    place(false);
+    const onResize = () => place(true);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [spyPath, isHome]);
 
   // Prevent background scroll when mobile menu is open & handle Escape key
   useEffect(() => {
@@ -83,6 +158,9 @@ export default function Navbar() {
     return pathname.startsWith(path);
   };
 
+  const isHighlighted = (path: string) => (isHome ? spyPath === path : isActive(path));
+  const navMinimal = isHome && scrolled && !pastHero;
+
   return (
     <header>
       <nav
@@ -94,9 +172,9 @@ export default function Navbar() {
           width: "100%",
           zIndex: 150,
           padding: scrolled ? "1rem 0" : "1.75rem 0",
-          background: scrolled ? "var(--nav-scrolled-bg)" : "transparent",
+          background: navMinimal ? "var(--nav-minimal-bg)" : scrolled ? "var(--nav-scrolled-bg)" : "transparent",
           backdropFilter: scrolled ? "var(--blur-nav)" : "none",
-          borderBottom: scrolled ? "1px solid var(--border-subtle)" : "1px solid transparent",
+          borderBottom: scrolled && !navMinimal ? "1px solid var(--border-subtle)" : "1px solid transparent",
           transition: "padding 0.4s var(--ease-editorial), background 0.4s ease, border-color 0.4s ease",
         }}
       >
@@ -105,7 +183,24 @@ export default function Navbar() {
             <Logo size={24} />
           </Link>
 
-          <div className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "2.25rem" }}>
+          <div ref={desktopNavRef} className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "2.25rem", position: "relative" }}>
+            {isHome && (
+              <span
+                ref={spyIndicatorRef}
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: 100,
+                  height: 1,
+                  background: "var(--accent-light)",
+                  transformOrigin: "left center",
+                  opacity: 0,
+                  pointerEvents: "none",
+                }}
+              />
+            )}
             {NAV_LINKS.map((link) => (
               <div
                 key={link.path}
@@ -121,7 +216,10 @@ export default function Navbar() {
               >
                 <Link
                   href={link.path}
-                  ref={link.dropdown ? servicesTriggerRef : undefined}
+                  ref={(node) => {
+                    linkRefs.current[link.path] = node;
+                    if (link.dropdown) servicesTriggerRef.current = node;
+                  }}
                   aria-current={isActive(link.path) ? "page" : undefined}
                   aria-haspopup={link.dropdown ? "true" : undefined}
                   aria-expanded={link.dropdown ? dropdownOpen : undefined}
@@ -146,7 +244,7 @@ export default function Navbar() {
                     gap: "0.3125rem",
                     fontSize: "0.875rem",
                     fontWeight: 500,
-                    color: isActive(link.path) ? "var(--text-primary)" : "var(--text-muted)",
+                    color: isHighlighted(link.path) ? "var(--text-primary)" : "var(--text-muted)",
                     position: "relative",
                     padding: "0.375rem 0",
                     transition: "color 0.3s ease",
@@ -161,7 +259,7 @@ export default function Navbar() {
                       bottom: 0,
                       left: 0,
                       height: 1,
-                      width: isActive(link.path) ? "100%" : "0%",
+                      width: isActive(link.path) && !isHome ? "100%" : "0%",
                       background: "var(--accent-light)",
                       transition: "width 0.3s var(--ease-editorial)",
                     }}

@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMotionLayer } from "@/components/motion/MotionLayerContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,12 +69,13 @@ export default function RevealHeading({
     () => wordGroups.reduce((total, group) => total + group.length, 0),
     [wordGroups]
   );
-  const showInstant = isInstantHero(className, instant);
+  const managedByMotionLayer = useMotionLayer();
+  const showInstant = managedByMotionLayer || isInstantHero(className, instant);
 
   useEffect(() => {
     const el = ref.current;
     const letters = letterRefs.current.filter(Boolean) as HTMLSpanElement[];
-    if (!el || !letters.length) return;
+    if (!el || !letters.length || managedByMotionLayer) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced || showInstant) {
@@ -147,7 +149,7 @@ export default function RevealHeading({
       exitObserver?.disconnect();
       ctx.revert();
     };
-  }, [delay, text, letterCount, showInstant]);
+  }, [delay, text, letterCount, showInstant, managedByMotionLayer]);
 
   let letterIndex = 0;
 
@@ -156,6 +158,7 @@ export default function RevealHeading({
       ref={ref as React.RefObject<HTMLElement>}
       className={`cursor-hover-target ${className}`.trim()}
       aria-hidden={ariaHidden}
+      data-motion-heading={managedByMotionLayer && !isInstantHero(className, instant) ? "" : undefined}
       style={{ ...style, display: "block" }}
     >
       {wordGroups.map((group, wordIndex) => (

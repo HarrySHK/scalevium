@@ -111,10 +111,10 @@ export default function Footer() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "2rem", flexWrap: "wrap", gap: "1rem" }}>
           <span style={{ fontSize: "0.8125rem", color: "var(--text-subtle)" }}>© {new Date().getFullYear()} Scalevium. All rights reserved.</span>
           <div style={{ display: "flex", gap: "1.5rem" }}>
-            <Link href="/privacy" style={{ fontSize: "0.8125rem", color: "var(--text-subtle)" }}>
+            <Link href="/privacy-policy" style={{ fontSize: "0.8125rem", color: "var(--text-subtle)" }}>
               Privacy Policy
             </Link>
-            <Link href="/terms" style={{ fontSize: "0.8125rem", color: "var(--text-subtle)" }}>
+            <Link href="/terms-condition" style={{ fontSize: "0.8125rem", color: "var(--text-subtle)" }}>
               Terms of Service
             </Link>
           </div>

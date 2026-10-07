@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import RevealHeading from "@/components/RevealHeading";
+import { PRIMARY_CTA_HREF, PRIMARY_CTA_LABEL } from "@/lib/site";
+import { useMotionLayer } from "@/components/motion/MotionLayerContext";
 
 interface CTASectionProps {
   heading: string;
@@ -17,14 +19,28 @@ interface CTASectionProps {
 export default function CTASection({
   heading,
   description,
-  primaryLabel = "Start a Conversation",
+  primaryLabel = PRIMARY_CTA_LABEL,
   secondaryLabel,
-  primaryHref = "/contact",
+  primaryHref = PRIMARY_CTA_HREF,
   secondaryHref,
 }: CTASectionProps) {
+  const managedByMotionLayer = useMotionLayer();
+
   return (
-    <section className="cta-section-wrapper" style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}>
-      <div className="container" style={{ textAlign: "center", maxWidth: "51.25rem" }}>
+    <section
+      className={managedByMotionLayer ? "cta-section-wrapper cta-section-wrapper--motion" : "cta-section-wrapper"}
+      style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}
+    >
+      {managedByMotionLayer && (
+        <div className="motion-glow-field" aria-hidden="true">
+          <span className="motion-glow-blob motion-glow-blob--cta-a" data-glow-blob />
+          <span className="motion-glow-blob motion-glow-blob--cta-b" data-glow-blob />
+        </div>
+      )}
+      <div
+        className="container"
+        style={{ textAlign: "center", maxWidth: "51.25rem", ...(managedByMotionLayer ? { position: "relative", zIndex: 1 } : null) }}
+      >
         <RevealHeading tag="h2" className="section-heading-editorial" style={{ marginBottom: "1.5rem" }} text={heading} />
         <p className="section-sub-editorial" style={{ margin: "0 auto 3rem", maxWidth: "33.75rem" }}>
           {description}

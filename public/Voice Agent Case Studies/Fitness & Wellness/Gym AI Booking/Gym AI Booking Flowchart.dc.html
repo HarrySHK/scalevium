@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#E9ECF1}a{color:#2563EB;text-decoration:none}a:hover{color:#1D4ED8;text-decoration:underline}</style>
+</helmet>
+<div data-screen-label="Gym AI Booking Flowchart" style="position:relative;width:1920px;height:1380px;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;color:#4B5565;background:#fff;background-image:linear-gradient(rgba(37,99,235,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.06) 1px,transparent 1px);background-size:40px 40px">
+
+  <img src="assets/logo-light.png" alt="Scalevium" style="position:absolute;left:80px;top:48px;height:30px;width:auto;display:block">
+  <div style="position:absolute;left:80px;top:98px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB;white-space:nowrap">Case study · Voice agent call flow</div>
+  <h1 style="position:absolute;left:80px;top:120px;margin:0;font-size:44px;line-height:1.1;font-weight:700;letter-spacing:-.015em;color:#0B0E14;white-space:nowrap">Automated Booking for Gyms</h1>
+  <div style="position:absolute;right:80px;top:136px;max-width:820px;text-align:right;font-size:17px;line-height:1.4;font-weight:500;color:#4B5565">After-hours interest turned into booked tours and qualified leads.</div>
+
+  <div style="position:absolute;left:740px;top:450px;width:1140px;height:210px;box-sizing:border-box;border:1.5px dashed rgba(37,99,235,.45);border-radius:14px;background:rgba(37,99,235,.035)"></div>
+  <div style="position:absolute;left:764px;top:632px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">The agent decides</div>
+  <div style="position:absolute;left:740px;top:710px;width:1140px;height:210px;box-sizing:border-box;border:1.5px dashed rgba(37,99,235,.45);border-radius:14px;background:rgba(37,99,235,.035)"></div>
+  <div style="position:absolute;left:764px;top:892px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Connected to your systems</div>
+
+  <svg width="1920" height="1380" viewBox="0 0 1920 1380" style="position:absolute;left:0;top:0" fill="none">
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0B0E14"></path></marker>
+      <marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2563EB"></path></marker>
+    </defs>
+    <g stroke="#0B0E14" stroke-width="2" marker-end="url(#ah)">
+      <path d="M380 290H458"></path>
+      <path d="M760 290H818"></path>
+      <path d="M1120 290H1178"></path>
+      <path d="M1260 360V406Q1260 420 1246 420H914Q900 420 900 434V478"></path>
+      <path d="M1340 360V478"></path>
+      <path d="M1420 360V406Q1420 420 1434 420H1686Q1700 420 1700 434V478"></path>
+      <path d="M900 620V738"></path>
+      <path d="M1340 620V738"></path>
+      <path d="M1700 620V738"></path>
+      <path d="M900 880V1056Q900 1070 914 1070H1198"></path>
+      <path d="M1340 880V998"></path>
+      <path d="M1700 880V1056Q1700 1070 1686 1070H1482"></path>
+    </g>
+    <path d="M1502 290H1558" stroke="#2563EB" stroke-width="2" stroke-dasharray="7 6" marker-start="url(#ahb)" marker-end="url(#ahb)"></path>
+  </svg>
+
+  <div style="position:absolute;left:1340px;top:420px;transform:translate(-50%,-50%);background:#2563EB;border:none;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700;color:#fff;white-space:nowrap">routes by intent</div>
+  <div style="position:absolute;left:900px;top:685px;transform:translate(-50%,-50%);background:#fff;border:1px solid rgba(11,14,20,.18);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;color:#0B0E14;white-space:nowrap">live write</div>
+  <div style="position:absolute;left:1340px;top:685px;transform:translate(-50%,-50%);background:#fff;border:1px solid rgba(11,14,20,.18);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;color:#0B0E14;white-space:nowrap">sends details</div>
+  <div style="position:absolute;left:1700px;top:685px;transform:translate(-50%,-50%);background:#fff;border:1px solid rgba(11,14,20,.18);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;color:#0B0E14;white-space:nowrap">warm transfer</div>
+  <div style="position:absolute;left:1340px;top:950px;transform:translate(-50%,-50%);background:#fff;border:1px solid rgba(11,14,20,.18);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;color:#0B0E14;white-space:nowrap">every call logged</div>
+
+  <div style="position:absolute;left:80px;top:220px;width:300px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);box-shadow:0 10px 30px -16px rgba(11,14,20,.22)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Caller</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Prospect calls at 8 PM</div>
+    <div style="font-size:16px;line-height:1.35;color:#4B5565">The front desk closed at 6</div>
+  </div>
+  <div style="position:absolute;left:460px;top:220px;width:300px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);box-shadow:0 10px 30px -16px rgba(11,14,20,.22)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Telephony</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Your existing number</div>
+    <div style="font-size:16px;line-height:1.35;color:#4B5565">All calls, after hours or overflow</div>
+  </div>
+  <div style="position:absolute;left:820px;top:220px;width:300px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);box-shadow:0 10px 30px -16px rgba(11,14,20,.22)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Voice layer</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Speech in, voice out</div>
+    <div style="font-size:16px;line-height:1.35;color:#4B5565">Hears the caller, replies naturally</div>
+  </div>
+  <div style="position:absolute;left:1180px;top:220px;width:320px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#0B0E14;border:1px solid #0B0E14;box-shadow:0 14px 34px -14px rgba(11,14,20,.45)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#8FB0FF">AI agent</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#fff">Scalevium voice agent</div>
+    <div style="font-size:16px;line-height:1.35;color:#B4BCCB">Understands the request, picks the next step</div>
+  </div>
+  <div style="position:absolute;left:1560px;top:220px;width:280px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#fff;border:1px solid rgba(37,99,235,.45);box-shadow:0 10px 30px -16px rgba(11,14,20,.22)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Knowledge</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Your rules</div>
+    <div style="font-size:16px;line-height:1.35;color:#4B5565">Tiers, classes, trainers, promotions</div>
+  </div>
+
+  <div style="position:absolute;left:760px;top:480px;width:280px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);box-shadow:0 10px 30px -16px rgba(11,14,20,.22)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Books</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Tour or PT session</div>
+    <div style="font-size:16px;line-height:1.35;color:#4B5565">Matched to goals and trainer</div>
+  </div>
+  <div style="position:absolute;left:1200px;top:480px;width:280px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);box-shadow:0 10px 30px -16px rgba(11,14,20,.22)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Answers</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Membership guidance</div>
+    <div style="font-size:16px;line-height:1.35;color:#4B5565">Recommends a tier from goals</div>
+  </div>
+  <div style="position:absolute;left:1560px;top:480px;width:280px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#EEF2FF;border:2px solid #2563EB">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#1D4ED8">Hands off</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Cancellation intent</div>
+    <div style="font-size:16px;line-height:1.35;color:#4B5565">Billing and retention to staff</div>
+  </div>
+
+  <div style="position:absolute;left:760px;top:740px;width:280px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);box-shadow:0 10px 30px -16px rgba(11,14,20,.22)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Writes to</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Gym software</div>
+    <div style="font-size:16px;line-height:1.35;color:#4B5565">Mindbody, GloFox or Zen Planner</div>
+  </div>
+  <div style="position:absolute;left:1200px;top:740px;width:280px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);box-shadow:0 10px 30px -16px rgba(11,14,20,.22)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Messaging</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Confirmation text</div>
+    <div style="font-size:16px;line-height:1.35;color:#4B5565">Tour time and directions</div>
+  </div>
+  <div style="position:absolute;left:1560px;top:740px;width:280px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);box-shadow:0 10px 30px -16px rgba(11,14,20,.22)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Your team</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Sales &amp; manager</div>
+    <div style="font-size:16px;line-height:1.35;color:#4B5565">Lead details and context</div>
+  </div>
+
+  <div style="position:absolute;left:1200px;top:1000px;width:280px;height:140px;box-sizing:border-box;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:10px;background:#2563EB;border:1px solid #2563EB;box-shadow:0 14px 34px -14px rgba(37,99,235,.55)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#DCE6FF">Your team sees</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#fff">Call dashboard</div>
+    <div style="font-size:16px;line-height:1.35;color:#E6EDFF">Transcript, summary, outcome</div>
+  </div>
+
+  <div style="position:absolute;left:80px;top:480px;width:600px;box-sizing:border-box;padding:16px 18px;border-radius:12px;background:#fff;border:1px solid rgba(11,14,20,.14);box-shadow:0 18px 40px -18px rgba(11,14,20,.35)">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#2563EB">Sample call · 8:12 PM</div>
+    <div style="margin-top:14px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:3px"><div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0B0E14">Caller</div><div style="font-size:18px;line-height:1.4;font-weight:500;color:#4B5565;text-wrap:pretty">Hi, what memberships do you have? I want to lose some weight.</div></div>
+      <div style="display:flex;flex-direction:column;gap:3px"><div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2563EB">AI agent</div><div style="font-size:18px;line-height:1.4;font-weight:500;color:#0B0E14;text-wrap:pretty">For weight loss, most members choose Premium, which includes all group classes. Would you like a free tour?</div></div>
+      <div style="display:flex;flex-direction:column;gap:3px"><div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0B0E14">Caller</div><div style="font-size:18px;line-height:1.4;font-weight:500;color:#4B5565;text-wrap:pretty">Sure, Saturday morning?</div></div>
+      <div style="display:flex;flex-direction:column;gap:3px"><div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2563EB">AI agent</div><div style="font-size:18px;line-height:1.4;font-weight:500;color:#0B0E14;text-wrap:pretty">You're booked for Saturday at 10 AM. I've texted you the details and directions.</div></div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:80px;top:930px;width:600px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB;white-space:nowrap">Guardrails</div>
+    <div style="margin-top:14px;display:flex;flex-direction:column;gap:16px">
+      <div style="border-top:2px solid #0B0E14;padding-top:10px"><div style="font-size:19px;font-weight:700;color:#0B0E14">Prices from your plans</div><div style="margin-top:4px;font-size:16px;line-height:1.4;text-wrap:pretty">Tiers and promotions come only from your list.</div></div>
+      <div style="border-top:2px solid #0B0E14;padding-top:10px"><div style="font-size:19px;font-weight:700;color:#0B0E14">Retention stays human</div><div style="margin-top:4px;font-size:16px;line-height:1.4;text-wrap:pretty">Cancellation calls reach your team with context.</div></div>
+      <div style="border-top:2px solid #0B0E14;padding-top:10px"><div style="font-size:19px;font-weight:700;color:#0B0E14">Multi-location</div><div style="margin-top:4px;font-size:16px;line-height:1.4;text-wrap:pretty">Callers are routed to the right club.</div></div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:80px;right:80px;top:1300px;padding-top:20px;border-top:1px solid rgba(11,14,20,.14);display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0B0E14;margin-right:6px">Integrations</span>
+      <span style="font-size:14px;font-weight:600;color:#0B0E14;background:#F6F7F9;border:1px solid rgba(11,14,20,.12);border-radius:999px;padding:5px 12px">Mindbody</span>
+      <span style="font-size:14px;font-weight:600;color:#0B0E14;background:#F6F7F9;border:1px solid rgba(11,14,20,.12);border-radius:999px;padding:5px 12px">GloFox</span>
+      <span style="font-size:14px;font-weight:600;color:#0B0E14;background:#F6F7F9;border:1px solid rgba(11,14,20,.12);border-radius:999px;padding:5px 12px">Zen Planner</span>
+      <span style="font-size:14px;font-weight:600;color:#0B0E14;background:#F6F7F9;border:1px solid rgba(11,14,20,.12);border-radius:999px;padding:5px 12px">Zenoti</span>
+      <span style="font-size:14px;font-weight:600;color:#0B0E14;background:#F6F7F9;border:1px solid rgba(11,14,20,.12);border-radius:999px;padding:5px 12px">SMS</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;font-size:15px;font-weight:600"><span style="color:#0B0E14">Engineering Without Limits</span><span style="color:#2563EB">scalevium.com</span></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1920,&quot;height&quot;:1380}}"></script>
+</body>
+</html>

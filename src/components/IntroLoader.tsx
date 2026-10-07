@@ -16,6 +16,10 @@ const CUE_LETTERS = MARK_DUR;
 const CUE_EXIT = MARK_DUR + LETTERS_DUR + HOLD_DUR;
 const TOTAL = CUE_EXIT + EXIT_DUR;
 
+/** Present on <html> while the intro covers the page; page-load animations wait for INTRO_EXIT_EVENT. */
+export const INTRO_ACTIVE_ATTR = "data-intro-active";
+export const INTRO_EXIT_EVENT = "scalevium:intro-exit";
+
 export default function IntroLoader() {
   const [visible, setVisible] = useState(false);
   const [exiting, setExiting] = useState(false);
@@ -39,8 +43,13 @@ export default function IntroLoader() {
 
     setVisible(true);
     document.body.style.overflow = "hidden";
+    document.documentElement.setAttribute(INTRO_ACTIVE_ATTR, "");
 
-    const exitTimer = setTimeout(() => setExiting(true), CUE_EXIT * 1000);
+    const exitTimer = setTimeout(() => {
+      setExiting(true);
+      document.documentElement.removeAttribute(INTRO_ACTIVE_ATTR);
+      window.dispatchEvent(new Event(INTRO_EXIT_EVENT));
+    }, CUE_EXIT * 1000);
     const doneTimer = setTimeout(() => {
       setVisible(false);
       document.body.style.overflow = "";
@@ -50,6 +59,7 @@ export default function IntroLoader() {
     return () => {
       clearTimeout(exitTimer);
       clearTimeout(doneTimer);
+      document.documentElement.removeAttribute(INTRO_ACTIVE_ATTR);
       document.body.style.overflow = "";
       document.body.style.removeProperty("overflow");
       document.documentElement.classList.remove("intro-pending");

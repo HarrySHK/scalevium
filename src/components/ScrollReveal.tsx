@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { useMotionLayer } from "@/components/motion/MotionLayerContext";
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -17,6 +18,15 @@ export default function ScrollReveal({
   className = "",
 }: ScrollRevealProps) {
   const shouldReduceMotion = useReducedMotion();
+  const managedByMotionLayer = useMotionLayer();
+
+  if (managedByMotionLayer) {
+    return (
+      <div className={className || undefined} data-reveal="">
+        {children}
+      </div>
+    );
+  }
 
   const getInitial = () => {
     if (shouldReduceMotion) return { opacity: 1, x: 0, y: 0 };

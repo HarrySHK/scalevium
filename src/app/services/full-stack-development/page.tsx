@@ -115,7 +115,7 @@ export default function FullStackDevelopmentPage() {
         </div>
       </section>
 
-      <CTASection heading="Ship The Next Version Of Your Product." description="Tell us your stack and timeline — we'll tell you what a sprint with us looks like." primaryLabel="Start a Conversation" primaryHref="/contact" />
+      <CTASection heading="Ship The Next Version Of Your Product." description="Tell us your stack and timeline — we'll tell you what a sprint with us looks like." primaryHref="/contact" />
     </div>
   );
 }

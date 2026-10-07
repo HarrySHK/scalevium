@@ -49,6 +49,8 @@ export default function ContactClient() {
   const [status, setStatus] = useState<"idle" | "submitting">("idle");
   const [toast, setToast] = useState<ToastState>(null);
   const [copied, setCopied] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [formStartedAt] = useState(() => Date.now());
 
   const dismissToast = useCallback(() => setToast(null), []);
 
@@ -122,7 +124,7 @@ export default function ContactClient() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, _hp: honeypot, _formStartedAt: formStartedAt }),
       });
 
       const data = (await res.json().catch(() => ({}))) as { error?: string; fields?: Record<string, string> };
@@ -183,6 +185,18 @@ export default function ContactClient() {
           <div className="contact-grid">
             <ScrollReveal>
               <form onSubmit={handleSubmit} noValidate>
+                <div className="contact-hp" aria-hidden="true">
+                  <label htmlFor="companyWebsite">Company website</label>
+                  <input
+                    id="companyWebsite"
+                    name="companyWebsite"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
                 <div className="form-row" style={{ marginBottom: "2rem" }}>
                   <FormField label="First Name *" id="firstName" error={touched.firstName ? errors.firstName : undefined}>
                     <Input
@@ -372,6 +386,13 @@ export default function ContactClient() {
 
       <style>{`
         .submit-btn { width: 100%; justify-content: center; }
+        .contact-hp {
+          position: absolute;
+          left: -9999px;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+        }
       `}</style>
     </div>
   );

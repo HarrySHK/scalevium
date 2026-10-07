@@ -28,8 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     { path: "/about", priority: 0.8, changeFrequency: "monthly", lastModified: STATIC_CONTENT_DATE },
     { path: "/contact", priority: 0.85, changeFrequency: "monthly", lastModified: STATIC_CONTENT_DATE },
-    { path: "/privacy", priority: 0.3, changeFrequency: "yearly", lastModified: STATIC_CONTENT_DATE },
-    { path: "/terms", priority: 0.3, changeFrequency: "yearly", lastModified: STATIC_CONTENT_DATE },
+    { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly", lastModified: STATIC_CONTENT_DATE },
+    { path: "/terms-condition", priority: 0.3, changeFrequency: "yearly", lastModified: STATIC_CONTENT_DATE },
   ];
 
   return routes.map((r) => ({

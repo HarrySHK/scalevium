@@ -118,7 +118,6 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
       <CTASection
         heading="Have Something Similar In Mind?"
         description="Connect with our technical team to discuss your engineering roadmap."
-        primaryLabel="Contact Scalevium"
         primaryHref="/contact"
       />
     </div>

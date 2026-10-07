@@ -16,11 +16,17 @@ export type CaseStudy = {
   liveUrl?: string;
   /** Path under /public for card and hero visuals */
   imageSrc: string;
+  /** Theme-specific card covers (scripts/generate-case-study-card-covers.mjs); imageSrc stays the detail hero */
+  cardImage?: { dark: string; light: string };
   /** Subtle per-project accent for hover and detail page accents */
   accentColor: string;
   /** Honest scope note when Scalevium was not sole author */
   contributionNote?: string;
 };
+
+function cardCover(slug: string): CaseStudy["cardImage"] {
+  return { dark: `/case-studies/cards/${slug}-dark.png`, light: `/case-studies/cards/${slug}-light.png` };
+}
 
 /** Tab labels for /case-studies — AI tab is first and default. */
 export const CASE_STUDY_PORTFOLIO_FILTERS = ["AI Projects", "Software Projects"] as const;
@@ -194,6 +200,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     stack: ["Conversational AI", "Real-time PMS APIs", "Telephony", "Secure deposits", "Multilingual NLU"],
     imageSrc: "/case-studies/ai-hospitality-receptionist.png",
+    cardImage: cardCover("ai-hospitality-receptionist"),
     accentColor: "#38bdf8",
   },
   {
@@ -227,6 +234,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     stack: ["AI receptionist", "Med spa scheduling APIs", "HIPAA-conscious design", "SMS intake links", "Promotion surge handling"],
     imageSrc: "/case-studies/ai-med-spa-receptionist.png",
+    cardImage: cardCover("ai-med-spa-receptionist"),
     accentColor: "#f472b6",
   },
   {
@@ -260,6 +268,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     stack: ["AI intake flows", "HIPAA + BAA", "SimplePractice / TherapyNotes", "Crisis protocols", "Telehealth scheduling"],
     imageSrc: "/case-studies/ai-therapy-receptionist.png",
+    cardImage: cardCover("ai-therapy-receptionist"),
     accentColor: "#a78bfa",
   },
   {
@@ -293,6 +302,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     stack: ["AI scheduling", "Mindbody / GloFox / Zen Planner", "Lead routing", "SMS confirmations", "Multi-location"],
     imageSrc: "/case-studies/ai-gym-receptionist.png",
+    cardImage: cardCover("ai-gym-receptionist"),
     accentColor: "#22c55e",
   },
   {
@@ -326,6 +336,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     stack: ["Conversational AI", "Spa scheduling APIs", "Deposits & payments", "SMS reminders", "Bilingual NLU"],
     imageSrc: "/case-studies/ai-spa-receptionist.png",
+    cardImage: cardCover("ai-spa-receptionist"),
     accentColor: "#2dd4bf",
   },
   {
@@ -359,6 +370,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     stack: ["AI triage", "HIPAA compliance", "Dental PMS sync", "Emergency SMS alerts", "Waitlist automation"],
     imageSrc: "/case-studies/ai-dental-receptionist.png",
+    cardImage: cardCover("ai-dental-receptionist"),
     accentColor: "#60a5fa",
   },
 ];

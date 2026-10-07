@@ -15,6 +15,9 @@ import ScrollProgress from "@/components/ScrollProgress";
 import IntroLoader from "@/components/IntroLoader";
 import ThemeToggle from "@/components/ThemeToggle";
 import { CONTACT_EMAIL, LINKEDIN_URL } from "@/lib/site";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import CookieConsent from "@/components/CookieConsent";
+import Analytics from "@/components/Analytics";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -66,6 +69,7 @@ export const metadata: Metadata = {
     description:
       "AI voice agents, AI agents and custom software that connect to the tools your business already uses.",
     creator: "@scalevium",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -77,6 +81,10 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  icons: {
+    icon: [{ url: "/brand/favicon.png", type: "image/png" }],
+    apple: [{ url: "/brand/favicon.png", type: "image/png" }],
   },
 };
 
@@ -144,6 +152,11 @@ export default function RootLayout({
           }}
         />
         <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(location.pathname!=='/'||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var d=document.documentElement;d.classList.add('home-hero-pending');setTimeout(function(){d.classList.remove('home-hero-pending');},7000);}catch(e){}})();`,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
@@ -153,23 +166,27 @@ export default function RootLayout({
         />
       </head>
       <body className={plusJakarta.className}>
-        <a href="#main-content" className="skip-to-content">
-          Skip to main content
-        </a>
-        <div className="app-root">
-          <IntroLoader />
-          <div className="app-chrome">
-            <div className="noise-overlay" aria-hidden="true" />
-            <CustomCursor />
-            <ScrollProgress />
-            <Navbar />
-            <main id="main-content" className="main-content-target" tabIndex={-1} style={{ position: "relative", zIndex: 2 }}>
-              {children}
-            </main>
-            <Footer />
-            <ThemeToggle />
+        <SmoothScrollProvider>
+          <Analytics />
+          <CookieConsent />
+          <a href="#main-content" className="skip-to-content">
+            Skip to main content
+          </a>
+          <div className="app-root">
+            <IntroLoader />
+            <div className="app-chrome">
+              <div className="noise-overlay" aria-hidden="true" />
+              <CustomCursor />
+              <ScrollProgress />
+              <Navbar />
+              <main id="main-content" className="main-content-target" tabIndex={-1} style={{ position: "relative", zIndex: 2 }}>
+                {children}
+              </main>
+              <Footer />
+              <ThemeToggle />
+            </div>
           </div>
-        </div>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

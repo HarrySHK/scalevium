@@ -3,14 +3,29 @@ import { validateContactForm, contactFormToPayload, type ContactFormData } from 
 import { createAdminClient } from "@/lib/supabase/admin";
 import { postToGoogleAppsScript } from "@/lib/googleSheetsWebhook";
 import { CONTACT_EMAIL } from "@/lib/site";
+import { getContactSpamError, type ContactSpamFields } from "@/lib/contactSpam";
 
 export async function POST(request: Request) {
-  let body: Partial<ContactFormData>;
+  let body: Partial<ContactFormData> & ContactSpamFields;
 
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
+  }
+
+  const spamFields: ContactSpamFields = {
+    _hp: typeof body._hp === "string" ? body._hp : undefined,
+    _formStartedAt:
+      typeof body._formStartedAt === "number"
+        ? body._formStartedAt
+        : typeof body._formStartedAt === "string"
+          ? Number(body._formStartedAt)
+          : undefined,
+  };
+  const spamError = getContactSpamError(spamFields);
+  if (spamError) {
+    return NextResponse.json({ error: spamError }, { status: 400 });
   }
 
   const form: ContactFormData = {

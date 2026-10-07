@@ -9,6 +9,7 @@ import { prefersReducedMotion } from "@/lib/prefersReducedMotion";
 import CaseStudyCard from "@/components/CaseStudyCard";
 import ScrollReveal from "@/components/ScrollReveal";
 import RevealHeading from "@/components/RevealHeading";
+import { useMotionLayer } from "@/components/motion/MotionLayerContext";
 
 interface CaseStudyTeaserProps {
   studies: CaseStudy[];
@@ -17,9 +18,10 @@ interface CaseStudyTeaserProps {
 export default function CaseStudyTeaser({ studies }: CaseStudyTeaserProps) {
   const gridRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
+  const managedByMotionLayer = useMotionLayer();
 
   useEffect(() => {
-    if (!gridRef.current || hasAnimated.current) return;
+    if (!gridRef.current || hasAnimated.current || managedByMotionLayer) return;
 
     const cards = gridRef.current.querySelectorAll(".case-study-teaser-item");
     if (prefersReducedMotion()) {
@@ -60,11 +62,11 @@ export default function CaseStudyTeaser({ studies }: CaseStudyTeaserProps) {
       observer.disconnect();
       ctx?.revert();
     };
-  }, []);
+  }, [managedByMotionLayer]);
 
   return (
     <section
-      className="section-pad-standard"
+      className="section-pad-standard case-study-teaser-section"
       style={{ borderTop: "1px solid var(--border-subtle)", position: "relative", zIndex: 3 }}
     >
       <div className="container">
@@ -76,10 +78,14 @@ export default function CaseStudyTeaser({ studies }: CaseStudyTeaserProps) {
           className="section-heading-editorial"
           text="AI Already Working For Businesses Like Yours."
           accentFrom={1}
-          style={{ marginBottom: "2.75rem", maxWidth: "43.75rem" }}
+          style={{ marginBottom: "1rem", maxWidth: "43.75rem" }}
         />
+        <p className="case-study-teaser-lede" style={{ maxWidth: "40rem" }}>
+          Real deployments across hospitality, healthcare, and operations — each connected to the tools your team
+          already uses.
+        </p>
 
-        <div ref={gridRef} className="grid-responsive-3">
+        <div ref={gridRef} className="grid-responsive-3 case-study-teaser-grid">
           {studies.map((study, i) => (
             <div key={study.slug} className="case-study-teaser-item">
               <CaseStudyCard study={study} index={i} compact />
@@ -87,9 +93,9 @@ export default function CaseStudyTeaser({ studies }: CaseStudyTeaserProps) {
           ))}
         </div>
 
-        <div style={{ marginTop: "2.25rem" }}>
-          <Link href="/case-studies" className="link-editorial" style={{ fontSize: "0.9375rem" }}>
-            See all work <ArrowUpRight size={15} aria-hidden="true" />
+        <div className="case-study-teaser-footer">
+          <Link href="/case-studies" className="case-study-teaser-all">
+            See All Work <ArrowUpRight size={15} aria-hidden="true" />
           </Link>
         </div>
       </div>
