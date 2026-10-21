@@ -14,7 +14,7 @@ import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import IntroLoader from "@/components/IntroLoader";
 import ThemeToggle from "@/components/ThemeToggle";
-import { CONTACT_EMAIL, LINKEDIN_URL } from "@/lib/site";
+import { CONTACT_EMAIL, LINKEDIN_URL, OFFICE_ADDRESS } from "@/lib/site";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import CookieConsent from "@/components/CookieConsent";
 import Analytics from "@/components/Analytics";
@@ -98,6 +98,14 @@ const organizationSchema = {
   description:
     "Scalevium builds AI agents, voice AI, and custom software connected to the systems businesses already use.",
   email: CONTACT_EMAIL,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: `${OFFICE_ADDRESS.street}, ${OFFICE_ADDRESS.unit}`,
+    addressLocality: OFFICE_ADDRESS.city,
+    addressRegion: OFFICE_ADDRESS.region,
+    postalCode: OFFICE_ADDRESS.postalCode,
+    addressCountry: OFFICE_ADDRESS.country,
+  },
   sameAs: [LINKEDIN_URL],
   contactPoint: [
     {

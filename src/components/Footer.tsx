@@ -2,9 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail, MapPin } from "lucide-react";
 import Logo from "./Logo";
-import { CONTACT_EMAIL, CONTACT_MAILTO, LINKEDIN_URL } from "@/lib/site";
+import { CONTACT_EMAIL, CONTACT_MAILTO, LINKEDIN_URL, OFFICE_ADDRESS, OFFICE_MAPS_URL } from "@/lib/site";
 
 export default function Footer() {
   const cols = [
@@ -103,6 +103,22 @@ export default function Footer() {
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
               >
                 <Mail size={15} aria-hidden="true" /> {CONTACT_EMAIL}
+              </a>
+              <a
+                href={OFFICE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Get directions to Scalevium's office (opens in new tab)"
+                style={{ fontSize: "0.875rem", display: "flex", alignItems: "flex-start", gap: "0.5rem", color: "var(--text-muted)", lineHeight: 1.6 }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
+              >
+                <MapPin size={15} aria-hidden="true" style={{ flexShrink: 0, marginTop: "0.15rem" }} />
+                <address style={{ fontStyle: "normal" }}>
+                  {OFFICE_ADDRESS.street}<br />
+                  {OFFICE_ADDRESS.unit}<br />
+                  {OFFICE_ADDRESS.city}, {OFFICE_ADDRESS.region} {OFFICE_ADDRESS.postalCode}
+                </address>
               </a>
             </div>
           </div>

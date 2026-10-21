@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Mail } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import RevealHeading from "@/components/RevealHeading";
 import FormField from "@/components/FormField";
@@ -17,7 +17,7 @@ import {
   validateContactForm,
   type ContactFormData,
 } from "@/lib/contactForm";
-import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/site";
+import { CONTACT_EMAIL, CONTACT_MAILTO, OFFICE_ADDRESS, OFFICE_MAPS_URL } from "@/lib/site";
 import { formatNorthAmericanPhone } from "@/lib/phoneFormat";
 
 const INTERESTS = [
@@ -361,6 +361,25 @@ export default function ContactClient() {
                   >
                     {copied ? "Copied!" : "Copy email address"}
                   </button>
+                </div>
+
+                <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "2rem" }}>
+                  <span className="eyebrow-minimal">OFFICE</span>
+                  <a
+                    href={OFFICE_MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Get directions to Scalevium's office (opens in new tab)"
+                    className="link-editorial"
+                    style={{ display: "inline-flex", alignItems: "flex-start", gap: "0.5rem", marginTop: "1rem", fontSize: "0.9375rem", lineHeight: 1.7 }}
+                  >
+                    <MapPin size={16} aria-hidden="true" style={{ flexShrink: 0, marginTop: "0.2rem" }} />
+                    <address style={{ fontStyle: "normal" }}>
+                      {OFFICE_ADDRESS.street}<br />
+                      {OFFICE_ADDRESS.unit}<br />
+                      {OFFICE_ADDRESS.city}, {OFFICE_ADDRESS.region} {OFFICE_ADDRESS.postalCode}
+                    </address>
+                  </a>
                 </div>
 
                 <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "2rem" }}>
