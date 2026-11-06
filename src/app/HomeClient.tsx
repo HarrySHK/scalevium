@@ -38,9 +38,9 @@ const CAPABILITIES = [
 ];
 
 const STATS = [
-  { index: "01", value: 11, suffix: "", label: "Projects shipped", sublabel: "6 AI systems and 5 software platforms", barPercent: 88 },
-  { index: "02", value: 10, suffix: "", label: "Industries served", sublabel: "Hospitality, healthcare, fitness, logistics, and more", barPercent: 82 },
-  { index: "03", value: 6, suffix: "", label: "AI systems live", sublabel: "Voice agents, intake, and booking in production", barPercent: 76 },
+  { index: "01", value: 12, suffix: "", label: "Projects shipped", sublabel: "7 AI systems and 5 software platforms", barPercent: 90 },
+  { index: "02", value: 11, suffix: "", label: "Industries served", sublabel: "Hospitality, healthcare, fitness, logistics, tax, and more", barPercent: 86 },
+  { index: "03", value: 7, suffix: "", label: "AI systems live", sublabel: "Voice agents, intake, booking, and tax operations automation", barPercent: 82 },
   { index: "04", value: 48, suffix: "h", label: "Engineer placement", sublabel: "Staff augmentation — often within 48 hours of approval", barPercent: 92 },
 ];
 

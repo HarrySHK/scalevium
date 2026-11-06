@@ -10,6 +10,8 @@ const VOICE_AGENT_FLOWCHART_BY_SLUG: Record<string, string> = {
     "/Voice Agent Case Studies/Healthcare/Therapy AI Intake/Therapy AI Intake Flowchart.dc.html",
   "ai-dental-receptionist":
     "/Voice Agent Case Studies/Healthcare/Dental AI Scheduling/Dental AI Scheduling Flowchart.dc.html",
+  "taxdome-workflow-automation":
+    "/case-studies/taxdome-workflow/flowchart.html",
 };
 
 /** Public paths to animated call-flow demos (Descript Component HTML under /public). */
@@ -24,6 +26,12 @@ const VOICE_AGENT_DEMO_VIDEO_BY_SLUG: Record<string, string> = {
     "/Voice Agent Case Studies/Healthcare/Therapy AI Intake/Therapy AI Intake Video.dc.html",
   "ai-dental-receptionist":
     "/Voice Agent Case Studies/Healthcare/Dental AI Scheduling/Dental AI Scheduling Video.dc.html",
+  "taxdome-workflow-automation":
+    "/case-studies/taxdome-workflow/video.dc.html",
+};
+
+const DEMO_LABEL_BY_SLUG: Record<string, string> = {
+  "taxdome-workflow-automation": "Watch the workflow",
 };
 
 /** Encode each path segment for use in iframe `src` and links. */
@@ -35,6 +43,10 @@ export function publicPathToUrl(publicPath: string): string {
 
 export function getVoiceAgentDemoVideoPath(slug: string): string | undefined {
   return VOICE_AGENT_DEMO_VIDEO_BY_SLUG[slug];
+}
+
+export function getCaseStudyDemoLabel(slug: string): string {
+  return DEMO_LABEL_BY_SLUG[slug] ?? "Watch the call flow";
 }
 
 export function getVoiceAgentFlowchartPath(slug: string): string | undefined {

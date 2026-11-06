@@ -8,14 +8,14 @@ import { CASE_STUDIES, getCaseStudyPortfolioFilters } from "@/lib/caseStudies";
 export const metadata: Metadata = {
   title: "Case Studies · Scalevium",
   description:
-    "6 AI systems and 5 software platforms across 10 industries — voice agents, booking AI, logistics platforms, and integration infrastructure.",
+    "7 AI systems and 5 software platforms across 11 industries — voice agents, tax operations automation, logistics platforms, and integration infrastructure.",
   alternates: {
     canonical: "https://scalevium.com/case-studies",
   },
   openGraph: {
     title: "Case Studies · Scalevium",
     description:
-      "6 AI systems and 5 software platforms across 10 industries — voice agents, booking AI, logistics platforms, and integration infrastructure.",
+      "7 AI systems and 5 software platforms across 11 industries — voice agents, tax operations automation, logistics platforms, and integration infrastructure.",
     url: "https://scalevium.com/case-studies",
     siteName: "Scalevium",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Scalevium Case Studies" }],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Case Studies · Scalevium",
     description:
-      "6 AI systems and 5 software platforms across 10 industries — voice agents, booking AI, logistics platforms, and integration infrastructure.",
+      "7 AI systems and 5 software platforms across 11 industries — voice agents, tax operations automation, logistics platforms, and integration infrastructure.",
     images: ["/og-image.jpg"],
   },
 };
@@ -44,7 +44,7 @@ const caseStudiesSchema = {
       "@type": "CollectionPage",
       name: "Scalevium Case Studies",
       description:
-        "Selected production engineering work and voice AI receptionist products across logistics, healthcare, hospitality, fitness, and dental operations.",
+        "Selected production engineering work across logistics, healthcare, hospitality, fitness, dental, and tax operations.",
       url: "https://scalevium.com/case-studies",
     },
   ],
@@ -71,7 +71,7 @@ export default function CaseStudiesPage() {
           />
           <ScrollReveal>
             <p className="section-sub-editorial" style={{ marginTop: "1.5rem", maxWidth: "42rem" }}>
-              6 AI systems and 5 software platforms across 10 industries — from voice agents that book on the call to fleet platforms and live dispatch dashboards.
+              7 AI systems and 5 software platforms across 11 industries — from voice agents that book on the call to TaxDome workflow automation and live dispatch dashboards.
             </p>
           </ScrollReveal>
         </div>

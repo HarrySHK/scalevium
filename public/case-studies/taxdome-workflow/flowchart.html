@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1920px; height: 1380px; overflow: hidden; background: #fff; }
+</style>
+</head>
+<body>
+<div style="position:relative;width:1920px;height:1380px;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;color:#4B5565;background:#fff;background-image:linear-gradient(rgba(37,99,235,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.06) 1px,transparent 1px);background-size:40px 40px">
+  <img src="assets/logo-light.png" alt="Scalevium" style="position:absolute;left:80px;top:48px;height:30px;width:auto;display:block">
+  <div style="position:absolute;left:80px;top:98px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB">Case study · TaxDome workflow</div>
+  <h1 style="position:absolute;left:80px;top:120px;margin:0;font-size:44px;line-height:1.1;font-weight:700;letter-spacing:-.015em;color:#0B0E14;white-space:nowrap">TaxDome Workflow Automation</h1>
+  <div style="position:absolute;right:80px;top:128px;max-width:640px;text-align:right;font-size:17px;line-height:1.4;font-weight:500">Client files read from TaxDome. Updates written back only after a person approves them.</div>
+
+  <div style="position:absolute;left:500px;top:490px;width:1360px;height:200px;border:1.5px dashed rgba(37,99,235,.45);border-radius:14px;background:rgba(37,99,235,.035)"></div>
+  <div style="position:absolute;left:500px;top:770px;width:1360px;height:200px;border:1.5px dashed rgba(37,99,235,.45);border-radius:14px;background:rgba(37,99,235,.035)"></div>
+
+  <svg width="1920" height="1380" viewBox="0 0 1920 1380" style="position:absolute;left:0;top:0" fill="none">
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0B0E14"></path></marker>
+      <marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2563EB"></path></marker>
+    </defs>
+    <g stroke="#0B0E14" stroke-width="2" marker-end="url(#ah)">
+      <path d="M440 300H518"></path>
+      <path d="M880 300H958"></path>
+      <path d="M1150 370V426Q1150 440 1136 440H714Q700 440 700 454V518"></path>
+      <path d="M1150 370V518"></path>
+      <path d="M1150 370V426Q1150 440 1164 440H1616Q1630 440 1630 454V518"></path>
+      <path d="M700 660V798"></path>
+      <path d="M700 940V1116Q700 1130 714 1130H958"></path>
+      <path d="M1150 940V1058"></path>
+      <path d="M1630 940V1116Q1630 1130 1616 1130H1342"></path>
+    </g>
+    <g stroke="#2563EB" stroke-width="2" stroke-dasharray="7 6">
+      <path d="M1340 300H1418" marker-end="url(#ahb)" marker-start="url(#ahb)"></path>
+      <path d="M1150 660V798" marker-end="url(#ahb)"></path>
+      <path d="M1630 660V798" marker-end="url(#ahb)"></path>
+    </g>
+  </svg>
+
+  <div style="position:absolute;left:700px;top:300px;transform:translate(-50%,-50%);background:#fff;border:1px solid rgba(11,14,20,.18);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600;color:#0B0E14;white-space:nowrap">opens the workspace</div>
+  <div style="position:absolute;left:1150px;top:440px;transform:translate(-50%,-50%);background:#2563EB;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:#fff;white-space:nowrap">reads the live file</div>
+  <div style="position:absolute;left:1630px;top:440px;transform:translate(-50%,-50%);background:#fff;border:1px solid rgba(11,14,20,.18);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600;color:#0B0E14;white-space:nowrap">drafts a change</div>
+  <div style="position:absolute;left:1150px;top:730px;transform:translate(-50%,-50%);background:#2563EB;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:#fff;white-space:nowrap">asks on Telegram</div>
+  <div style="position:absolute;left:1630px;top:730px;transform:translate(-50%,-50%);background:#2563EB;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:#fff;white-space:nowrap">writes the approval</div>
+  <div style="position:absolute;left:1150px;top:1000px;transform:translate(-50%,-50%);background:#fff;border:1px solid rgba(11,14,20,.18);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600;color:#0B0E14;white-space:nowrap">every run logged</div>
+
+  <div style="position:absolute;left:80px;top:230px;width:360px;height:140px;padding:18px 20px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB">Source</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">TaxDome</div>
+    <div style="font-size:16px;line-height:1.35">Pipelines, stages, notes, IRS notices</div>
+  </div>
+  <div style="position:absolute;left:520px;top:230px;width:360px;height:140px;padding:18px 20px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB">Browser</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Signed-in session</div>
+    <div style="font-size:16px;line-height:1.35">One tab on the firm’s own login</div>
+  </div>
+  <div style="position:absolute;left:960px;top:230px;width:380px;height:140px;padding:18px 20px;border-radius:10px;background:#0B0E14;border:1px solid #0B0E14;display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8FB0FF">Reads</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#fff">ARIA snapshot</div>
+    <div style="font-size:16px;line-height:1.35;color:#B4BCCB">Page structure, not brittle selectors</div>
+  </div>
+  <div style="position:absolute;left:1420px;top:230px;width:420px;height:140px;padding:18px 20px;border-radius:10px;background:#fff;border:1px solid rgba(37,99,235,.45);display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB">Knowledge</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Training library</div>
+    <div style="font-size:16px;line-height:1.35">Navigation learned from firm videos</div>
+  </div>
+
+  <div style="position:absolute;left:520px;top:520px;width:360px;height:140px;padding:18px 20px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB">Captures</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Client pipeline</div>
+    <div style="font-size:16px;line-height:1.35">Current stage and file status</div>
+  </div>
+  <div style="position:absolute;left:960px;top:520px;width:380px;height:140px;padding:18px 20px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB">Captures</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Notes and notices</div>
+    <div style="font-size:16px;line-height:1.35">IRS notices on the live file</div>
+  </div>
+  <div style="position:absolute;left:1420px;top:520px;width:420px;height:140px;padding:18px 20px;border-radius:10px;background:#EEF2FF;border:2px solid #2563EB;display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1D4ED8">Prepares</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Proposed update</div>
+    <div style="font-size:16px;line-height:1.35">Held until someone approves it</div>
+  </div>
+
+  <div style="position:absolute;left:520px;top:800px;width:360px;height:140px;padding:18px 20px;border-radius:10px;background:#fff;border:1px solid rgba(11,14,20,.14);display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB">Hands to</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Four-agent system</div>
+    <div style="font-size:16px;line-height:1.35">Intake, research, notices, filing</div>
+  </div>
+  <div style="position:absolute;left:960px;top:800px;width:380px;height:140px;padding:18px 20px;border-radius:10px;background:#EEF2FF;border:2px solid #2563EB;display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1D4ED8">Approval</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#0B0E14">Telegram gate</div>
+    <div style="font-size:16px;line-height:1.35">A person approves every write</div>
+  </div>
+  <div style="position:absolute;left:1420px;top:800px;width:420px;height:140px;padding:18px 20px;border-radius:10px;background:#2563EB;border:1px solid #2563EB;display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#DCE6FF">Writes back</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#fff">Approved write</div>
+    <div style="font-size:16px;line-height:1.35;color:#E6EDFF">Only the change that was approved</div>
+  </div>
+  <div style="position:absolute;left:960px;top:1060px;width:380px;height:140px;padding:18px 20px;border-radius:10px;background:#2563EB;border:1px solid #2563EB;display:flex;flex-direction:column;gap:6px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#DCE6FF">Record</div>
+    <div style="font-size:22px;font-weight:700;line-height:1.2;color:#fff">Run log</div>
+    <div style="font-size:16px;line-height:1.35;color:#E6EDFF">What was read, held, and written</div>
+  </div>
+
+  <div style="position:absolute;left:80px;top:500px;width:380px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2563EB">Guardrails</div>
+    <div style="margin-top:14px;border-top:2px solid #0B0E14;padding-top:10px">
+      <div style="font-size:18px;font-weight:700;color:#0B0E14">No public API</div>
+      <div style="margin-top:4px;font-size:15px;line-height:1.4">The browser drives the firm’s signed-in TaxDome workspace.</div>
+    </div>
+    <div style="margin-top:16px;border-top:2px solid #0B0E14;padding-top:10px">
+      <div style="font-size:18px;font-weight:700;color:#0B0E14">Approval before every write</div>
+      <div style="margin-top:4px;font-size:15px;line-height:1.4">Telegram must approve before anything is saved.</div>
+    </div>
+    <div style="margin-top:16px;border-top:2px solid #0B0E14;padding-top:10px">
+      <div style="font-size:18px;font-weight:700;color:#0B0E14">One session</div>
+      <div style="margin-top:4px;font-size:15px;line-height:1.4">Human-like timing, one tab, and one persisted login.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:80px;right:80px;top:1288px;padding-top:18px;border-top:1px solid rgba(11,14,20,.14);display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0B0E14;margin-right:6px">Stack</span>
+      <span style="font-size:14px;font-weight:600;color:#0B0E14;background:#F6F7F9;border:1px solid rgba(11,14,20,.12);border-radius:999px;padding:5px 12px">Playwright</span>
+      <span style="font-size:14px;font-weight:600;color:#0B0E14;background:#F6F7F9;border:1px solid rgba(11,14,20,.12);border-radius:999px;padding:5px 12px">OpenClaw</span>
+      <span style="font-size:14px;font-weight:600;color:#0B0E14;background:#F6F7F9;border:1px solid rgba(11,14,20,.12);border-radius:999px;padding:5px 12px">ARIA snapshots</span>
+      <span style="font-size:14px;font-weight:600;color:#0B0E14;background:#F6F7F9;border:1px solid rgba(11,14,20,.12);border-radius:999px;padding:5px 12px">Telegram</span>
+      <span style="font-size:14px;font-weight:600;color:#0B0E14;background:#F6F7F9;border:1px solid rgba(11,14,20,.12);border-radius:999px;padding:5px 12px">TaxDome</span>
+    </div>
+    <div style="display:flex;gap:20px;font-size:15px;font-weight:600"><span style="color:#0B0E14">Engineering Without Limits</span><span style="color:#2563EB">scalevium.com</span></div>
+  </div>
+</div>
+</body>
+</html>

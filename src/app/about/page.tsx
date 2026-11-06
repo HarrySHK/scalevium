@@ -51,7 +51,7 @@ const aboutSchema = {
 
 const STORY = [
   { num: "01", title: "What we do", desc: "Scalevium Technologies Inc. builds AI agents, voice AI, and custom software that work inside the systems your business already uses." },
-  { num: "02", title: "Who we serve", desc: "Hospitality, healthcare, fitness, logistics, public safety, and SaaS teams — 11 shipped projects across 10 industries, including HIPAA-conscious AI for healthcare clients." },
+  { num: "02", title: "Who we serve", desc: "Hospitality, healthcare, fitness, logistics, public safety, tax, and SaaS teams — 12 shipped projects across 11 industries, including HIPAA-conscious AI for healthcare clients." },
   { num: "03", title: "How we deliver", desc: "We start from the business problem, connect AI to real CRM, booking, and practice software, and stay with you after launch with monitoring, tuning, and support." },
 ];
 

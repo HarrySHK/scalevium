@@ -81,8 +81,8 @@ export default function CaseStudyTeaser({ studies }: CaseStudyTeaserProps) {
           style={{ marginBottom: "1rem", maxWidth: "43.75rem" }}
         />
         <p className="case-study-teaser-lede" style={{ maxWidth: "40rem" }}>
-          Real deployments across hospitality, healthcare, and operations — each connected to the tools your team
-          already uses.
+          Real deployments across hospitality, healthcare, fitness, and tax operations — each connected to the tools
+          your team already uses.
         </p>
 
         <div ref={gridRef} className="grid-responsive-3 case-study-teaser-grid">

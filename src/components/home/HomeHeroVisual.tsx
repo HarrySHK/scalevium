@@ -66,7 +66,7 @@ export default function HomeHeroVisual() {
         <div className="home-float home-float--stat" data-depth="0.55">
           <div className="home-float-card" data-float-card>
             <div className="home-float-card__metric">
-              11<span>Projects shipped</span>
+              12<span>Projects shipped</span>
             </div>
             <div className="home-float-card__bar">
               <span style={{ width: "88%" }} />
@@ -75,7 +75,7 @@ export default function HomeHeroVisual() {
         </div>
 
         <div className="home-float home-float--badge-a" data-depth="0.9">
-          <span className="home-float-badge" data-float-badge>+6 AI systems live</span>
+          <span className="home-float-badge" data-float-badge>+7 AI systems live</span>
         </div>
         <div className="home-float home-float--badge-b" data-depth="1">
           <span className="home-float-badge home-float-badge--success" data-float-badge>

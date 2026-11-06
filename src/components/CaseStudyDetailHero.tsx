@@ -8,6 +8,7 @@ import { gsap } from "gsap";
 import type { CaseStudy } from "@/lib/caseStudies";
 import { prefersReducedMotion } from "@/lib/prefersReducedMotion";
 import {
+  getCaseStudyDemoLabel,
   getVoiceAgentDemoVideoPath,
   getVoiceAgentFlowchartPath,
   publicPathToUrl,
@@ -24,6 +25,7 @@ export default function CaseStudyDetailHero({ study }: CaseStudyDetailHeroProps)
 
   const demoVideoPath = getVoiceAgentDemoVideoPath(study.slug);
   const demoVideoUrl = demoVideoPath ? publicPathToUrl(demoVideoPath) : undefined;
+  const demoLabel = getCaseStudyDemoLabel(study.slug);
   const hasDiagramHero = Boolean(getVoiceAgentFlowchartPath(study.slug));
 
   useEffect(() => {
@@ -74,7 +76,7 @@ export default function CaseStudyDetailHero({ study }: CaseStudyDetailHeroProps)
                 onClick={() => setVideoOpen(true)}
               >
                 <Play size={16} aria-hidden="true" fill="currentColor" />
-                Watch the call flow
+                {demoLabel}
               </button>
             )}
             {study.liveUrl && (
@@ -100,7 +102,7 @@ export default function CaseStudyDetailHero({ study }: CaseStudyDetailHeroProps)
               <div className="case-study-detail-diagram-stage">
                 <Image
                   src={study.imageSrc}
-                  alt={`${study.name} — voice agent call flow diagram`}
+                  alt={`${study.name} workflow diagram`}
                   width={1920}
                   height={1380}
                   sizes="(max-width: 992px) 100vw, 58vw"
@@ -131,7 +133,7 @@ export default function CaseStudyDetailHero({ study }: CaseStudyDetailHeroProps)
         <CaseStudyDetailVideoModal
           open={videoOpen}
           onClose={() => setVideoOpen(false)}
-          title={`${study.name} — call flow demo`}
+          title={`${study.name} demo`}
           videoSrc={demoVideoUrl}
         />
       )}

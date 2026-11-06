@@ -170,6 +170,40 @@ export const CASE_STUDIES: CaseStudy[] = [
     accentColor: "#d4a574",
   },
   {
+    slug: "taxdome-workflow-automation",
+    name: "TaxDome Workflow Automation",
+    portfolio: "ai",
+    category: "Tax Operations · Automation",
+    oneLiner:
+      "Browser automation connecting a four-agent tax operation to TaxDome — reads client pipelines, stages, notes, and IRS notices, and writes updates back only after a person approves the change on Telegram.",
+    complexity: [
+      {
+        title: "Bridge Without a Public API",
+        body: "TaxDome does not offer a public API for this workflow. The bridge drives the firm’s own signed-in workspace in the browser, reading the page through ARIA snapshots instead of CSS selectors that break when the layout changes.",
+      },
+      {
+        title: "Pipeline, Notes, and IRS Notices",
+        body: "The agent reads client pipelines, current stages, internal notes, and IRS notices, then hands that context to the firm’s existing four-agent system so the work starts from the live file, not a retyped summary.",
+      },
+      {
+        title: "Approval Before Every Write",
+        body: "Nothing is written back to TaxDome on its own. Each update waits for an explicit approval in Telegram, then the same browser session applies only the change that was approved.",
+      },
+      {
+        title: "Navigation Learned From Training",
+        body: "Sixty to seventy training videos were turned into a structured knowledge base of how the firm moves through TaxDome, so the agent follows those paths instead of searching the interface from scratch.",
+      },
+      {
+        title: "One Signed-In Session",
+        body: "Human-like timing, a persisted login, and single-tab operation keep the bridge inside one workspace. The session stays with the firm’s account rather than opening parallel browsers.",
+      },
+    ],
+    stack: ["Playwright", "OpenClaw", "Telegram", "ARIA snapshots", "TaxDome"],
+    imageSrc: "/case-studies/taxdome-workflow-flowchart.png",
+    cardImage: cardCover("taxdome-workflow-automation"),
+    accentColor: "#4c7dff",
+  },
+  {
     slug: "ai-hospitality-receptionist",
     name: "Hotel AI Receptionist",
     portfolio: "ai",
@@ -376,6 +410,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 ];
 
 export const HOMEPAGE_CASE_STUDY_SLUGS = [
+  "taxdome-workflow-automation",
   "ai-hospitality-receptionist",
   "ai-dental-receptionist",
   "ai-therapy-receptionist",
